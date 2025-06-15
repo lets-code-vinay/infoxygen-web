@@ -1,0 +1,1 @@
+{"mappings":"ACAA","sources":["infoxygen-website.aa978835.css","src/index.css"],"sourcesContent":["body {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\n/*# sourceMappingURL=infoxygen-website.aa978835.css.map */\n","body {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n}\r\n"],"names":[],"version":3,"file":"infoxygen-website.aa978835.css.map"}
