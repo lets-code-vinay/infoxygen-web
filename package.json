@@ -4,11 +4,13 @@
   "description": "Infoxygen Developers",
   "scripts": {
     "start": "parcel src/index.html",
+    "build": "parcel build src/index.html",
     "clean": "rimraf dist && rimraf .parcel-cache",
     "clean-nodes": "rimraf node_modules"
   },
   "author": "Vinay Maurya",
   "license": "ISC",
+  "homepage": "https://lets-code-vinay.github.io/infoxygen-web",
   "dependencies": {
     "@parcel/transformer-sass": "^2.15.2",
     "process": "^0.11.10",
