@@ -24,8 +24,7 @@ const UnderMaintenance = () => {
           We’ll be back online shortly. Thank you for your patience!
         </p>
         <p style={styles.contact}>
-          Contact us at:{" "}
-          <a href="mailto:support@infoxygen.com">support@infoxygen.com</a>
+          Contact us at: <a href="mailto:hr@infoxygen.com">hr@infoxygen.com</a>
         </p>
       </div>
     </>
