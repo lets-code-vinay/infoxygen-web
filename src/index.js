@@ -1,18 +1,16 @@
 import React from "react";
-import ReactDom from "react-dom/client";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer";
-import UnderMaintenance from "./components/UnderMaintenance";
+import ReactDOM from "react-dom/client";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import theme from "./theme";
+import App from "./App";
 
-const App = () => {
-  return (
-    <>
-      <Header />
-      <UnderMaintenance />
-      <Footer />
-    </>
-  );
-};
-
-const root = ReactDom.createRoot(document.getElementById("root"));
-root.render(<App />);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
+  </React.StrictMode>
+);
