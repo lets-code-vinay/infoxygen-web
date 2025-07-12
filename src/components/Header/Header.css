@@ -35,6 +35,8 @@
 
 .logo {
   flex-shrink: 0;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .logo img {
@@ -42,6 +44,8 @@
   width: auto;
   transition: all 0.3s ease;
   filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .desktop-nav {
@@ -58,6 +62,8 @@
   transition: all 0.3s ease;
   position: relative;
   padding: 0.5rem 0;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .nav-link::after {
@@ -83,13 +89,16 @@
 /* Dropdown Styles */
 .dropdown-container {
   position: relative;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .dropdown-trigger {
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  cursor: pointer;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .dropdown-arrow {
@@ -114,6 +123,8 @@
   z-index: 1001;
   animation: fadeInDown 0.3s ease;
   margin-top: 0.5rem;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 @keyframes fadeInDown {
@@ -138,6 +149,8 @@
   transition: all 0.3s ease;
   border-bottom: 1px solid #f5f5f5;
   gap: 0.75rem;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .dropdown-item:last-child {
@@ -174,11 +187,12 @@
   border-radius: 5px;
   font-size: 0.9rem;
   font-weight: 500;
-  cursor: pointer;
+  cursor: not-allowed;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   z-index: 1;
+  pointer-events: none;
 }
 
 .contact-button::before {
@@ -208,9 +222,10 @@
   flex-direction: column;
   background: none;
   border: none;
-  cursor: pointer;
+  cursor: not-allowed;
   padding: 0.5rem;
   transition: all 0.3s ease;
+  pointer-events: none;
 }
 
 .hamburger-line {
@@ -242,6 +257,8 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border-top: 1px solid #eee;
   animation: slideDown 0.3s ease;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 @keyframes slideDown {
@@ -264,6 +281,8 @@
   border-bottom: 1px solid #f0f0f0;
   transition: all 0.3s ease;
   position: relative;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .mobile-nav-link::after {
@@ -289,13 +308,16 @@
 /* Mobile Dropdown Styles */
 .mobile-dropdown {
   position: relative;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .mobile-dropdown-trigger {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .mobile-dropdown-arrow {
@@ -312,6 +334,8 @@
   margin-left: 1rem;
   border-left: 2px solid #007bff;
   animation: slideInLeft 0.3s ease;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 @keyframes slideInLeft {
@@ -336,6 +360,8 @@
   transition: all 0.3s ease;
   border-bottom: 1px solid #e9ecef;
   gap: 0.75rem;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .mobile-dropdown-item:last-child {
@@ -356,12 +382,13 @@
   border-radius: 5px;
   font-size: 1rem;
   font-weight: 500;
-  cursor: pointer;
+  cursor: not-allowed;
   margin-top: 1rem;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   z-index: 1;
+  pointer-events: none;
 }
 
 .mobile-contact-button::before {
