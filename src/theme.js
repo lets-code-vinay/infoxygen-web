@@ -78,7 +78,6 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: 'none',
-          borderRadius: '5px',
           fontWeight: 500,
         },
         contained: {
