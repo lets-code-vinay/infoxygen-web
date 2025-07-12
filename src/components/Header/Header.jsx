@@ -123,7 +123,7 @@ const Header = () => {
           <Toolbar sx={{ justifyContent: 'space-between', px: { xs: 1, md: 2 } }}>
             {/* Logo on the left */}
             <StyledLogo
-              src={new URL("../../assets/logos/io2-logo-light.png", import.meta.url).href}
+              src={new URL("../../assets/logos/logo.png", import.meta.url).href}
               alt="Infoxygen"
             />
            
