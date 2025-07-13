@@ -70,6 +70,7 @@ const SlidingTrack = styled(Box, {
  */
 const ImageContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
+  width:'200px', height:'80px',
   alignItems: 'center',
   justifyContent: 'center',
   padding: theme.spacing(0, 1),
@@ -85,8 +86,7 @@ const ImageContainer = styled(Box)(({ theme }) => ({
  * @description Individual image with consistent sizing and hover effects
  */
 const SliderImage = styled('img')(({ theme }) => ({
-  height: '4rem',
-  width: '8rem', // Fixed width for all images
+  width: '100%', // Fixed width for all images
   cursor: 'pointer',
   margin:'5px 10px',
   filter: 'grayscale(100%)',
@@ -137,7 +137,7 @@ const InfinitySlider = ({
     <SliderContainer className={className} style={style} {...props}>
       <SlidingTrack isSlideSpeedFast={isSlideSpeedFast}>
         {images.map(({ name, image, alt }, index) => (
-          <ImageContainer key={`${name}-${index}`}>
+          <ImageContainer key={`${name}-${index}`} id='image-box'>
             <SliderImage 
               src={new URL(image, import.meta.url).href}
               alt={alt || `${name} logo`}

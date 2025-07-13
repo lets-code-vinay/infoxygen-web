@@ -10,59 +10,8 @@ import OpenAI from '../../assets/logos/ai-logos/OpenAI.svg';
 import Gemini from '../../assets/logos/ai-logos/gemini.svg';
 import CharacterAI from '../../assets/logos/ai-logos/Character-ai.svg';
 
-export const INFINITY_SLIDER_CONTENTS = [
-  {
-    name: "Claude AI",
-    image: ClaudeAI,
-    alt: "Claude AI logo",
-  },
-  {
-    name: "Augment",
-    image: Augment,
-    alt: "Augment logo",
-  },
-  {
-    name: "NVIDIA",
-    image: Nvidia,
-    alt: "NVIDIA logo",
-  },
-  {
-    name: "Meta",
-    image: Meta,
-    alt: "Meta logo",
-  },
-  {
-    name: "Anthropic",
-    image: Anthropic,
-    alt: "Anthropic logo",
-  },
-  {
-    name: "DeepSeek",
-    image: DeepSeek,
-    alt: "DeepSeek logo",
-  },
-  {
-    name: "Snowflake",
-    image: Snowflake,
-    alt: "Snowflake logo",
-  },
-  {
-    name: "OpenAI",
-    image: OpenAI,
-    alt: "OpenAI logo",
-  },
-  {
-    name: "Gemini",
-    image: Gemini,
-    alt: "Gemini logo",
-  },
-  {
-    name: "Character.ai",
-    image: CharacterAI,
-    alt: "Character.ai logo",
-  },
-
-  // ----Repeat---
+// Base array of logos
+const baseLogos = [
   {
     name: "Claude AI",
     image: ClaudeAI,
@@ -115,107 +64,22 @@ export const INFINITY_SLIDER_CONTENTS = [
   },
 ];
 
-export const INFINITY_SLIDER_CONTENTS_BOTTOM = [
-  {
-    name: "Claude AI",
-    image: ClaudeAI,
-    alt: "Claude AI logo",
-  },
-  {
-    name: "Augment",
-    image: Augment,
-    alt: "Augment logo",
-  },
-  {
-    name: "NVIDIA",
-    image: Nvidia,
-    alt: "NVIDIA logo",
-  },
-  {
-    name: "Meta",
-    image: Meta,
-    alt: "Meta logo",
-  },
-  {
-    name: "Anthropic",
-    image: Anthropic,
-    alt: "Anthropic logo",
-  },
-  {
-    name: "DeepSeek",
-    image: DeepSeek,
-    alt: "DeepSeek logo",
-  },
-  {
-    name: "Snowflake",
-    image: Snowflake,
-    alt: "Snowflake logo",
-  },
-  {
-    name: "OpenAI",
-    image: OpenAI,
-    alt: "OpenAI logo",
-  },
-  {
-    name: "Gemini",
-    image: Gemini,
-    alt: "Gemini logo",
-  },
-  {
-    name: "Character.ai",
-    image: CharacterAI,
-    alt: "Character.ai logo",
-  },
+// Function to shuffle array (Fisher-Yates algorithm)
+const shuffleArray = (array) => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
 
-  // ------------ repeat
-  {
-    name: "Claude AI",
-    image: ClaudeAI,
-    alt: "Claude AI logo",
-  },
-  {
-    name: "Augment",
-    image: Augment,
-    alt: "Augment logo",
-  },
-  {
-    name: "NVIDIA",
-    image: Nvidia,
-    alt: "NVIDIA logo",
-  },
-  {
-    name: "Meta",
-    image: Meta,
-    alt: "Meta logo",
-  },
-  {
-    name: "Anthropic",
-    image: Anthropic,
-    alt: "Anthropic logo",
-  },
-  {
-    name: "DeepSeek",
-    image: DeepSeek,
-    alt: "DeepSeek logo",
-  },
-  {
-    name: "Snowflake",
-    image: Snowflake,
-    alt: "Snowflake logo",
-  },
-  {
-    name: "OpenAI",
-    image: OpenAI,
-    alt: "OpenAI logo",
-  },
-  {
-    name: "Gemini",
-    image: Gemini,
-    alt: "Gemini logo",
-  },
-  {
-    name: "Character.ai",
-    image: CharacterAI,
-    alt: "Character.ai logo",
-  },
-];
+// Create shuffled arrays for infinite scrolling effect
+const createShuffledArray = () => {
+  const shuffled = shuffleArray(baseLogos);
+  return [...shuffled, ...shuffled]; // Duplicate for seamless loop
+};
+
+export const INFINITY_SLIDER_CONTENTS = createShuffledArray();
+
+export const INFINITY_SLIDER_CONTENTS_BOTTOM = createShuffledArray();

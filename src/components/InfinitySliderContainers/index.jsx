@@ -11,22 +11,22 @@ import {
  * @description Main container with responsive padding and spacing
  */
 const MultiVendorContainer = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(15, 0),
-  marginBottom: theme.spacing(3),
+  padding: theme.spacing(2, 0),
+  marginBottom: theme.spacing(1),
   [theme.breakpoints.down('sm')]: {
-    padding: theme.spacing(20, 0),
+    padding: theme.spacing(3, 0),
   },
   [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(22, 0),
-    height: '51vh',
+    padding: theme.spacing(4, 0),
+    height: 'auto',
   },
   [theme.breakpoints.up('lg')]: {
-    padding: theme.spacing(9, 0, 0),
-    minHeight: '45vh',
-    maxHeight: '60vh',
+    padding: theme.spacing(3, 0),
+    minHeight: 'auto',
+    maxHeight: 'none',
   },
   [theme.breakpoints.up('xl')]: {
-    padding: theme.spacing(0),
+    padding: theme.spacing(3, 0),
   },
 }));
 
