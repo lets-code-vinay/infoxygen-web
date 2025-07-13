@@ -40,7 +40,26 @@ const StyledLogo = styled('img')(({ scrolled }) => ({
   height: '52px',
   width: 'auto',
   transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-  filter: scrolled ? 'none' : 'brightness(0) invert(1)', // Makes logo white when transparent
+  filter: scrolled ? 'none' : 'none', // Natural colors when not scrolled
+  animation: scrolled ? 'none' : 'logoColorCycle 10s ease-in-out infinite',
+  '@keyframes logoColorCycle': {
+    '0%, 100%': {
+      filter: 'none',
+      transform: 'scale(1)',
+    },
+    '25%': {
+      filter: 'brightness(0) invert(1)',
+      transform: 'scale(1.01)',
+    },
+    '50%': {
+      filter: 'none',
+      transform: 'scale(1.02)',
+    },
+    '75%': {
+      filter: 'brightness(0) invert(1)',
+      transform: 'scale(1.01)',
+    },
+  },
 }));
 
 /**
