@@ -14,7 +14,7 @@
       "@parcel/transformer-image"
     ],
     "*.svg": [
-      "@parcel/transformer-image"
+      "@parcel/transformer-raw"
     ],
     "*.js": [
       "@parcel/transformer-js",
