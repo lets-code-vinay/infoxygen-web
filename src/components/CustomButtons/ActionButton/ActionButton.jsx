@@ -17,7 +17,14 @@ const StyledButton = styled(Button, {
   
   // Get color based on variant
   const getColor = () => {
-    return colorVariant === 'secondary' ? theme.palette.secondary.main : theme.palette.primary.main;
+    switch (colorVariant) {
+      case 'secondary':
+        return theme.palette.secondary.main;
+      case 'accent':
+        return theme.palette.accent.light;
+      default:
+        return theme.palette.primary.main;
+    }
   };
   
   const buttonColor = getColor();

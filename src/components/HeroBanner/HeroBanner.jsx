@@ -4,21 +4,23 @@ import { AnimatedLogo, AnimatedLogoAdvanced } from '../AnimatedLogo';
 import ActionButton from '../CustomButtons/ActionButton/ActionButton';
 
 const HeroContainer = styled(Box)(({ theme }) => ({
-  minHeight: 'calc(100vh - 64px)',
-  height: 'calc(100vh - 64px)',
+  minHeight: '100vh',
+  height: '100vh',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   background: 'linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 25%, #0a0a0a 50%, #0f0f0f 75%, #0a0a0a 100%)',
   position: 'relative',
   overflow: 'hidden',
+  marginTop: '-64px', // Compensate for the fixed header
+  paddingTop: '64px', // Add padding to account for header height
   [theme.breakpoints.down('sm')]: {
-    minHeight: 'calc(100vh - 56px)',
-    height: 'calc(100vh - 56px)',
+    marginTop: '-56px',
+    paddingTop: '56px',
   },
   [theme.breakpoints.up('lg')]: {
-    minHeight: 'calc(100vh - 72px)',
-    height: 'calc(100vh - 72px)',
+    marginTop: '-72px',
+    paddingTop: '72px',
   },
   '&::before': {
     content: '""',

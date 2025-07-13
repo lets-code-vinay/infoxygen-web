@@ -15,18 +15,33 @@ import DesktopMenu from "./DesktopMenu";
 import MobileMenu from "./MobileMenu";
 
 const StyledAppBar = styled(AppBar)(({ theme, scrolled }) => ({
-  backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.98)' : '#ffffff',
-  backdropFilter: scrolled ? 'blur(10px)' : 'none',
-  boxShadow: scrolled ? '0 2px 20px rgba(0, 0, 0, 0.08)' : '0 1px 3px rgba(0, 0, 0, 0.1)',
-  borderBottom: '1px solid #e5e5e5',
-  transition: 'all 0.3s ease',
+  backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+  backdropFilter: scrolled ? 'blur(15px)' : 'none',
+  boxShadow: scrolled 
+    ? 'rgb(2, 0, 0) 0px 8px 30px -6px inset, 0 4px 20px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05)' 
+    : 'none',
+  borderBottom: scrolled ? '1px solid rgba(229, 229, 229, 0.6)' : 'none',
+  transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+  transform: scrolled ? 'translateY(0)' : 'translateY(0)',
+  animation: scrolled ? 'slideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
+  '@keyframes slideDown': {
+    '0%': {
+      transform: 'translateY(-100%)',
+      opacity: 0,
+    },
+    '100%': {
+      transform: 'translateY(0)',
+      opacity: 1,
+    },
+  },
 }));
 
-const StyledLogo = styled('img')({
+const StyledLogo = styled('img')(({ scrolled }) => ({
   height: '52px',
   width: 'auto',
-  transition: 'all 0.3s ease',
-});
+  transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+  filter: scrolled ? 'none' : 'brightness(0) invert(1)', // Makes logo white when transparent
+}));
 
 /**
  * Main Header component that manages navigation state and responsive behavior
@@ -51,7 +66,7 @@ const Header = () => {
    */
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -125,12 +140,14 @@ const Header = () => {
             <StyledLogo
               src={new URL("../../assets/logos/logo.png", import.meta.url).href}
               alt="Infoxygen"
+              scrolled={isScrolled ? 1 : 0}
             />
            
             {/* All navigation and button grouped on the right */}
             {!isMobile && (
               <DesktopMenu
                 theme={theme}
+                scrolled={isScrolled}
                 servicesAnchorEl={servicesAnchorEl}
                 industriesAnchorEl={industriesAnchorEl}
                 handleServicesClick={handleServicesClick}

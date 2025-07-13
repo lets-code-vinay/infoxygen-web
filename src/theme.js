@@ -14,6 +14,9 @@ const theme = createTheme({
       dark: '#2e7d32',
       contrastText: '#ffffff',
     },
+    accent: {
+      light: '#2b89a7',
+    },
     background: {
       default: '#ffffff',
       paper: '#ffffff',
@@ -71,6 +74,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           boxShadow: 'none',
+          borderRadius: '0',
         },
       },
     },
