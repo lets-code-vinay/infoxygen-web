@@ -72,7 +72,7 @@ const ContentContainer = styled(Box)(({ theme }) => ({
   marginTop: '200px',
 }));
 
-const HeroBanner = () => {
+const HeroBanner1 = () => {
   const animationRef = useRef(null);
 
   useEffect(() => {
@@ -262,4 +262,4 @@ const HeroBanner = () => {
   );
 };
 
-export default HeroBanner; 
+export default HeroBanner1; 

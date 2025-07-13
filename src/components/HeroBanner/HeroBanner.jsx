@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Box, Container, Typography, Button, styled } from '@mui/material';
 import { AnimatedLogo, AnimatedLogoAdvanced } from '../AnimatedLogo';
+import ActionButton from '../CustomButtons/ActionButton/ActionButton';
 
 const HeroContainer = styled(Box)(({ theme }) => ({
   minHeight: 'calc(100vh - 64px)',
@@ -92,7 +93,6 @@ const StatsContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   gap: theme.spacing(4),
-  marginTop: theme.spacing(6),
   flexWrap: 'wrap',
 }));
 
@@ -108,42 +108,6 @@ const StatItem = styled(Box)(({ theme }) => ({
     transform: 'translateY(-5px)',
     background: 'rgba(255, 255, 255, 0.1)',
     boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
-  },
-}));
-
-const CTAButton = styled(Button)(({ theme }) => ({
-  background: 'linear-gradient(45deg, #667eea 0%, #764ba2 100%)',
-  color: 'white',
-  padding: '12px 32px',
-  borderRadius: '25px',
-  fontSize: '1.1rem',
-  fontWeight: 600,
-  textTransform: 'none',
-  boxShadow: '0 8px 25px rgba(102, 126, 234, 0.4)',
-  transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-  marginTop: theme.spacing(4),
-  position: 'relative',
-  overflow: 'hidden',
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: '-100%',
-    width: '100%',
-    height: '100%',
-    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
-    transition: 'left 0.5s',
-  },
-  '&:hover': {
-    transform: 'translateY(-3px) scale(1.05)',
-    boxShadow: '0 15px 40px rgba(102, 126, 234, 0.6)',
-    background: 'linear-gradient(45deg, #5a6fd8 0%, #6a4190 100%)',
-    '&::before': {
-      left: '100%',
-    },
-  },
-  '&:active': {
-    transform: 'translateY(-1px) scale(1.02)',
   },
 }));
 
@@ -483,7 +447,7 @@ const HeroBanner = () => {
               variant="h1" 
               className="slide-in-left"
               sx={{ 
-                fontSize: { xs: '2.5rem', md: '4rem', lg: '5rem' },
+                fontSize: { xs: '2rem', md: '3rem', lg: '3.5rem' },
                 fontWeight: 800,
                 mb: 3,
                 letterSpacing: '-0.02em',
@@ -494,12 +458,13 @@ const HeroBanner = () => {
               <span 
                 className="bounce-in"
                 style={{ 
-                  background: 'linear-gradient(45deg, #667eea, #764ba2)', 
+                  background: 'linear-gradient(45deg, #388e3c, #4caf50, #2e7d32)', 
                   WebkitBackgroundClip: 'text', 
                   WebkitTextFillColor: 'transparent', 
                   backgroundClip: 'text',
                   display: 'inline-block',
-                  animationDelay: '0.8s'
+                  animationDelay: '0.8s',
+                  textShadow: '0 0 20px rgba(56, 142, 60, 0.3)'
                 }}
               >
                 digital innovation
@@ -510,7 +475,7 @@ const HeroBanner = () => {
               variant="h2" 
               className="slide-in-right"
               sx={{ 
-                fontSize: { xs: '1.2rem', md: '1.5rem', lg: '1.8rem' },
+                fontSize: { xs: '1rem', md: '1.2rem', lg: '1.4rem' },
                 fontWeight: 400,
                 mb: 4,
                 opacity: 0.9,
@@ -522,14 +487,8 @@ const HeroBanner = () => {
               Amplify business impact with Infoxygen's specialized knowledge and technology-based solutions
             </Typography>
 
-            <CTAButton 
-              variant="contained" 
-              size="large"
-              className="scale-in glow-pulse"
-              sx={{ animationDelay: '0.6s' }}
-            >
-              Launch Platform
-            </CTAButton>
+            <ActionButton colorVariant='secondary' text="Launch Platform" direction="left" radius={10} />
+
           </Box>
 
           {/* Right Side - Animated Logo */}
@@ -571,7 +530,7 @@ const HeroBanner = () => {
         </Box>
 
         {/* Stats Section */}
-        <StatsContainer className="fade-in-up-delay-3">
+        <StatsContainer className="fade-in-up-delay-3" mb={2} mt={0}>
           <StatItem className="stat-item-hover">
             <Typography 
               variant="h3" 
