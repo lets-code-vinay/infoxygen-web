@@ -1,15 +1,24 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Box, Container, Typography, Button, styled } from '@mui/material';
 import { AnimatedLogo, AnimatedLogoAdvanced } from '../AnimatedLogo';
 
 const HeroContainer = styled(Box)(({ theme }) => ({
-  minHeight: '100vh',
+  minHeight: 'calc(100vh - 64px)',
+  height: 'calc(100vh - 64px)',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%)',
+  background: 'linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 25%, #0a0a0a 50%, #0f0f0f 75%, #0a0a0a 100%)',
   position: 'relative',
   overflow: 'hidden',
+  [theme.breakpoints.down('sm')]: {
+    minHeight: 'calc(100vh - 56px)',
+    height: 'calc(100vh - 56px)',
+  },
+  [theme.breakpoints.up('lg')]: {
+    minHeight: 'calc(100vh - 72px)',
+    height: 'calc(100vh - 72px)',
+  },
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -17,7 +26,7 @@ const HeroContainer = styled(Box)(({ theme }) => ({
     left: 0,
     right: 0,
     bottom: 0,
-    background: 'radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%)',
+    background: 'radial-gradient(circle at 20% 80%, rgba(0, 60, 79, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(56, 142, 60, 0.15) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(0, 60, 79, 0.1) 0%, transparent 50%)',
     animation: 'backgroundShift 8s ease-in-out infinite',
   },
 }));
@@ -38,11 +47,11 @@ const FloatingCircle = styled('div')(({ delay, size, color }) => ({
   height: size,
   borderRadius: '50%',
   background: color,
-  opacity: 0.1,
+  opacity: 0.25,
   animation: `float 6s ease-in-out infinite`,
   animationDelay: `${delay}s`,
-  filter: 'blur(1px)',
-  boxShadow: `0 0 20px ${color}40`,
+  filter: 'blur(0.5px)',
+  boxShadow: `0 0 30px ${color}60, 0 0 60px ${color}40`,
 }));
 
 const GlowingOrb = styled('div')(({ theme }) => ({
@@ -50,13 +59,13 @@ const GlowingOrb = styled('div')(({ theme }) => ({
   width: '300px',
   height: '300px',
   borderRadius: '50%',
-  background: `radial-gradient(circle, ${theme.palette.primary.main}20 0%, transparent 70%)`,
+  background: `radial-gradient(circle, ${theme.palette.primary.main}15 0%, transparent 70%)`,
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   animation: 'pulse 4s ease-in-out infinite',
   zIndex: 1,
-  boxShadow: `0 0 60px ${theme.palette.primary.main}30`,
+  boxShadow: `0 0 60px ${theme.palette.primary.main}20`,
 }));
 
 const ContentContainer = styled(Box)(({ theme }) => ({
@@ -140,6 +149,23 @@ const CTAButton = styled(Button)(({ theme }) => ({
 
 const HeroBanner = () => {
   const animationRef = useRef(null);
+  const [circlePositions, setCirclePositions] = useState([]);
+
+  useEffect(() => {
+    // Generate random positions for floating circles
+    const generateRandomPositions = () => {
+      const positions = [];
+      for (let i = 0; i < 5; i++) {
+        positions.push({
+          top: Math.random() * 80 + 10, // 10% to 90%
+          left: Math.random() * 80 + 10, // 10% to 90%
+        });
+      }
+      return positions;
+    };
+
+    setCirclePositions(generateRandomPositions());
+  }, []);
 
   useEffect(() => {
     // Add CSS animations dynamically
@@ -147,19 +173,19 @@ const HeroBanner = () => {
     style.textContent = `
       @keyframes backgroundShift {
         0%, 100% {
-          opacity: 0.8;
+          opacity: 0.6;
           transform: scale(1) rotate(0deg);
         }
         25% {
-          opacity: 1;
+          opacity: 0.8;
           transform: scale(1.05) rotate(1deg);
         }
         50% {
-          opacity: 0.9;
+          opacity: 0.7;
           transform: scale(1.1) rotate(-1deg);
         }
         75% {
-          opacity: 1;
+          opacity: 0.8;
           transform: scale(1.05) rotate(1deg);
         }
       }
@@ -167,23 +193,23 @@ const HeroBanner = () => {
       @keyframes float {
         0% {
           transform: translateY(0px) rotate(0deg) scale(1);
-          opacity: 0.1;
+          opacity: 0.25;
         }
         25% {
-          transform: translateY(-15px) rotate(90deg) scale(1.1);
-          opacity: 0.2;
+          transform: translateY(-20px) rotate(90deg) scale(1.15);
+          opacity: 0.4;
         }
         50% {
-          transform: translateY(-25px) rotate(180deg) scale(1);
-          opacity: 0.3;
+          transform: translateY(-35px) rotate(180deg) scale(1);
+          opacity: 0.5;
         }
         75% {
-          transform: translateY(-15px) rotate(270deg) scale(1.1);
-          opacity: 0.2;
+          transform: translateY(-20px) rotate(270deg) scale(1.15);
+          opacity: 0.4;
         }
         100% {
           transform: translateY(0px) rotate(360deg) scale(1);
-          opacity: 0.1;
+          opacity: 0.25;
         }
       }
 
@@ -349,42 +375,89 @@ const HeroBanner = () => {
     <HeroContainer>
       {/* Background Elements */}
       <FloatingElements>
-        <FloatingCircle delay={0} size="60px" color="#667eea" style={{ top: '20%', left: '10%' }} />
-        <FloatingCircle delay={2} size="40px" color="#764ba2" style={{ top: '60%', left: '80%' }} />
-        <FloatingCircle delay={4} size="80px" color="#667eea" style={{ top: '80%', left: '20%' }} />
-        <FloatingCircle delay={1} size="50px" color="#764ba2" style={{ top: '30%', left: '70%' }} />
-        <FloatingCircle delay={3} size="70px" color="#667eea" style={{ top: '70%', left: '60%' }} />
+        {circlePositions.length > 0 && (
+          <>
+            <FloatingCircle 
+              delay={0} 
+              size="80px" 
+              color="#003c4f" 
+              style={{ 
+                top: `${circlePositions[0]?.top}%`, 
+                left: `${circlePositions[0]?.left}%` 
+              }} 
+            />
+            <FloatingCircle 
+              delay={2} 
+              size="60px" 
+              color="#388e3c" 
+              style={{ 
+                top: `${circlePositions[1]?.top}%`, 
+                left: `${circlePositions[1]?.left}%` 
+              }} 
+            />
+            <FloatingCircle 
+              delay={4} 
+              size="100px" 
+              color="#003c4f" 
+              style={{ 
+                top: `${circlePositions[2]?.top}%`, 
+                left: `${circlePositions[2]?.left}%` 
+              }} 
+            />
+            <FloatingCircle 
+              delay={1} 
+              size="70px" 
+              color="#388e3c" 
+              style={{ 
+                top: `${circlePositions[3]?.top}%`, 
+                left: `${circlePositions[3]?.left}%` 
+              }} 
+            />
+            <FloatingCircle 
+              delay={3} 
+              size="90px" 
+              color="#003c4f" 
+              style={{ 
+                top: `${circlePositions[4]?.top}%`, 
+                left: `${circlePositions[4]?.left}%` 
+              }} 
+            />
+          </>
+        )}
         
         {/* Sharp animated lines */}
         <div style={{
           position: 'absolute',
           top: '15%',
           left: '5%',
-          width: '2px',
-          height: '100px',
-          background: 'linear-gradient(to bottom, transparent, #667eea, transparent)',
+          width: '3px',
+          height: '120px',
+          background: 'linear-gradient(to bottom, transparent, #003c4f, transparent)',
           animation: 'pulse 3s ease-in-out infinite',
-          animationDelay: '1s'
+          animationDelay: '1s',
+          opacity: 0.6
         }} />
         <div style={{
           position: 'absolute',
           top: '25%',
           right: '10%',
-          width: '2px',
-          height: '80px',
-          background: 'linear-gradient(to bottom, transparent, #764ba2, transparent)',
+          width: '3px',
+          height: '100px',
+          background: 'linear-gradient(to bottom, transparent, #388e3c, transparent)',
           animation: 'pulse 3s ease-in-out infinite',
-          animationDelay: '2s'
+          animationDelay: '2s',
+          opacity: 0.6
         }} />
         <div style={{
           position: 'absolute',
           bottom: '20%',
           left: '15%',
-          width: '100px',
-          height: '2px',
-          background: 'linear-gradient(to right, transparent, #667eea, transparent)',
+          width: '120px',
+          height: '3px',
+          background: 'linear-gradient(to right, transparent, #003c4f, transparent)',
           animation: 'pulse 4s ease-in-out infinite',
-          animationDelay: '0.5s'
+          animationDelay: '0.5s',
+          opacity: 0.6
         }} />
       </FloatingElements>
 
@@ -465,7 +538,20 @@ const HeroBanner = () => {
             display: 'flex', 
             justifyContent: { xs: 'center', md: 'flex-end' },
             alignItems: 'center',
-            maxWidth: { xs: '100%', md: '50%' }
+            maxWidth: { xs: '100%', md: '50%' },
+            position: 'relative',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '400px',
+              height: '400px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%)',
+              zIndex: 0,
+            }
           }}>
             <AnimatedLogoAdvanced
               pieces={[
@@ -493,7 +579,7 @@ const HeroBanner = () => {
               sx={{ 
                 fontSize: '2.5rem', 
                 fontWeight: 700, 
-                color: '#667eea', 
+                color: '#003c4f', 
                 mb: 1,
                 animationDelay: '1s'
               }}
@@ -512,7 +598,7 @@ const HeroBanner = () => {
               sx={{ 
                 fontSize: '2.5rem', 
                 fontWeight: 700, 
-                color: '#764ba2', 
+                color: '#388e3c', 
                 mb: 1,
                 animationDelay: '1.2s'
               }}
@@ -531,7 +617,7 @@ const HeroBanner = () => {
               sx={{ 
                 fontSize: '2.5rem', 
                 fontWeight: 700, 
-                color: '#667eea', 
+                color: '#003c4f', 
                 mb: 1,
                 animationDelay: '1.4s'
               }}
@@ -550,7 +636,7 @@ const HeroBanner = () => {
               sx={{ 
                 fontSize: '2.5rem', 
                 fontWeight: 700, 
-                color: '#764ba2', 
+                color: '#388e3c', 
                 mb: 1,
                 animationDelay: '1.6s'
               }}
