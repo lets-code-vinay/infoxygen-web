@@ -4,7 +4,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer";
 import UnderMaintenance from "./components/UnderMaintenance";
 import HeroBanner from "./components/HeroBanner/HeroBanner";
-import InfinitySliderContainer from "./components/InfinitySliderContainers";
+import AIPartnersSection from "./components/AiPartners/AIPartnersSection";
 
 const App = () => {
   return (
@@ -17,7 +17,7 @@ const App = () => {
       <Box sx={{ flex: 1 }}>
         <HeroBanner />
          {/* AI Partners Infinity Slider */}
-          <InfinitySliderContainer />
+          <AIPartnersSection />
         <UnderMaintenance />
       </Box>
       <Footer />

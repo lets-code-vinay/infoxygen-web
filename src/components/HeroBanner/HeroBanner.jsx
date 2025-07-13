@@ -14,6 +14,8 @@ const HeroContainer = styled(Box)(({ theme }) => ({
   overflow: 'hidden',
   marginTop: '-64px', // Compensate for the fixed header
   paddingTop: '64px', // Add padding to account for header height
+  marginBottom: 0, // Remove any bottom margin
+  borderBottom: 'none', // Remove any border
   [theme.breakpoints.down('sm')]: {
     marginTop: '-56px',
     paddingTop: '56px',
