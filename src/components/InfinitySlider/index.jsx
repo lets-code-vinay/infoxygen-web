@@ -82,17 +82,18 @@ const ImageContainer = styled(Box)(({ theme }) => ({
 
 /**
  * Styled image for the slider
- * @description Individual image with responsive sizing and hover effects
+ * @description Individual image with consistent sizing and hover effects
  */
 const SliderImage = styled('img')(({ theme }) => ({
   height: '4rem',
-  minWidth: '6rem',
-  maxWidth: '100%',
+  width: '8rem', // Fixed width for all images
   cursor: 'pointer',
+  margin:'5px 10px',
   filter: 'grayscale(100%)',
   opacity: 0.2,
   transition: 'all 0.3s ease',
   objectFit: 'contain',
+  objectPosition: 'center',
   '&:hover': {
     filter: 'none',
     opacity: 1,
@@ -100,19 +101,19 @@ const SliderImage = styled('img')(({ theme }) => ({
   },
   [theme.breakpoints.down('sm')]: {
     height: '2rem',
-    minWidth: '4rem',
+    width: '4rem',
   },
   [theme.breakpoints.up('md')]: {
     height: '3rem',
-    minWidth: '5rem',
+    width: '6rem',
   },
   [theme.breakpoints.up('lg')]: {
     height: '4rem',
-    minWidth: '6rem',
+    width: '8rem',
   },
   [theme.breakpoints.up('xl')]: {
     height: '5rem',
-    minWidth: '8rem',
+    width: '10rem',
   },
 }));
 
