@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import UnderMaintenance from "./components/UnderMaintenance";
 import HeroBanner from "./components/HeroBanner/HeroBanner";
 import AIPartnersSection from "./components/AiPartners/AIPartnersSection";
+import CoreIndustriesSection from "./components/CoreIndustries/CoreIndustriesSection";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <HeroBanner />
          {/* AI Partners Infinity Slider */}
           <AIPartnersSection />
+          <CoreIndustriesSection />
         <UnderMaintenance />
       </Box>
       <Footer />
