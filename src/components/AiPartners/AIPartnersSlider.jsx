@@ -1,5 +1,10 @@
-import React from 'react';
-import { SliderContainer, SlidingTrack, ImageContainer, SliderImage } from './StyledAiPartner';
+import React from "react";
+import {
+  SliderContainer,
+  SlidingTrack,
+  ImageContainer,
+  SliderImage,
+} from "./StyledAiPartner";
 
 /**
  * Infinity Slider component with customizable speed and images
@@ -10,19 +15,19 @@ import { SliderContainer, SlidingTrack, ImageContainer, SliderImage } from './St
  * @param {string} props.className - Additional CSS classes
  * @param {Object} props.style - Additional inline styles
  */
-const AiPartnerSlider = ({ 
-  isSlideSpeedFast = false, 
-  images = [], 
-  className = '',
+const AiPartnerSlider = ({
+  isSlideSpeedFast = false,
+  images = [],
+  className = "",
   style = {},
-  ...props 
+  ...props
 }) => {
   return (
     <SliderContainer className={className} style={style} {...props}>
       <SlidingTrack isSlideSpeedFast={isSlideSpeedFast}>
-        {images.map(({ name, image, alt }, index) => (
-          <ImageContainer key={`${name}-${index}`} id='image-box'>
-            <SliderImage 
+        {[...images, ...images].map(({ name, image, alt }, index) => (
+          <ImageContainer key={`${name}-${index}`} id="image-box">
+            <SliderImage
               src={new URL(image, import.meta.url).href}
               alt={alt || `${name} logo`}
               loading="lazy"

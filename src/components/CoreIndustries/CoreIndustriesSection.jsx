@@ -1,21 +1,16 @@
-import React from 'react';
-import { useTheme } from '@mui/material';
-import { CORE_INDUSTRIES } from '../../configs/coreIndustries';
-import ActionButton from '../CustomButtons/ActionButton/ActionButton';
+import React from "react";
+import { useTheme } from "@mui/material";
+import { CORE_INDUSTRIES } from "../../configs/coreIndustries";
+import SectionHeader from "../SectionHeader";
 import {
   SectionContainer,
-  TitleRow,
-  CoreTitle,
-  IndustriesTitle,
-  AnimatedSliderBar,
-  Description,
   SliderContainer,
   SlidingTrack,
   IndustryCard,
   IndustryTitle,
   IconWrapper,
   IconImage,
-} from './StyledCoreIndustries';
+} from "./StyledCoreIndustries";
 
 // Duplicate the industries for seamless infinite scroll
 function getSlidingIndustries() {
@@ -28,21 +23,26 @@ const CoreIndustriesSection = () => {
 
   return (
     <SectionContainer>
-      <TitleRow>
-        <CoreTitle>CORE</CoreTitle>
-        <IndustriesTitle>INDUSTRIES</IndustriesTitle>
-      </TitleRow>
-      <AnimatedSliderBar />
-      <Description>
-        Empowering essential sectors with innovative contact center solutions, driving operational excellence and digital transformation across industries.
-      </Description>
-      <ActionButton text="Connect With Expert"
-  direction="left"
-  radius={0}
-  colorVariant="primary"
->
-        Connect With Expert
-      </ActionButton>
+      <SectionHeader
+        title={
+          <>
+            <span style={{ color: theme.palette.primary.main }}>CORE</span>{" "}
+            <span style={{ color: theme.palette.secondary.main }}>
+              INDUSTRIES
+            </span>
+          </>
+        }
+        description="Empowering essential sectors with innovative contact center solutions, driving operational excellence and digital transformation across industries."
+        showUnderline={true}
+        showButton={true}
+        buttonProps={{
+          text: "Connect With Expert",
+          direction: "left",
+          radius: 0,
+          colorVariant: "primary",
+        }}
+      />
+
       <SliderContainer>
         <SlidingTrack>
           {industries.map(({ name, image, alt }, idx) => (
@@ -59,4 +59,4 @@ const CoreIndustriesSection = () => {
   );
 };
 
-export default CoreIndustriesSection; 
+export default CoreIndustriesSection;
