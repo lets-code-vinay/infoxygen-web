@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box } from "@mui/material";
 import ActionButton from "./CustomButtons/ActionButton/ActionButton";
 import {
   AnimatedSliderBar,
   Description,
 } from "./CoreIndustries/StyledCoreIndustries";
+import ColorSwitchTitle from "./ColorSwitchTitle/ColorSwitchTitle";
+import { useTheme } from "@mui/material";
 
 const SectionHeader = ({
   title,
@@ -12,8 +14,13 @@ const SectionHeader = ({
   showUnderline = true,
   showButton = false,
   buttonProps = {},
+  titleWords,
+  titleColors,
 }) => {
-  // Removed barWidth logic
+  const theme = useTheme();
+  // If titleWords is a string, split it into words for ColorSwitchTitle
+  const wordsArray =
+    typeof titleWords === "string" ? titleWords.split(" ") : undefined;
   return (
     <Box
       sx={{
@@ -38,7 +45,7 @@ const SectionHeader = ({
             display: "block",
           }}
         >
-          {title}
+          {titleWords ? <ColorSwitchTitle title={titleWords} /> : title}
         </Box>
         {showUnderline && <AnimatedSliderBar sx={{ marginLeft: 0 }} />}
         {description && (

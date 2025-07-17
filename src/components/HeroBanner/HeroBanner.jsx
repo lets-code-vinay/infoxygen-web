@@ -1,117 +1,120 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Box, Container, Typography, Button, styled } from '@mui/material';
-import { AnimatedLogo, AnimatedLogoAdvanced } from '../AnimatedLogo';
-import ActionButton from '../CustomButtons/ActionButton/ActionButton';
+import React, { useEffect, useRef, useState } from "react";
+import { Box, Container, Typography, Button, styled } from "@mui/material";
+import { AnimatedLogo, AnimatedLogoAdvanced } from "../AnimatedLogo";
+import ActionButton from "../CustomButtons/ActionButton/ActionButton";
+import AnimatedTextSwitcher from "./AnimatedTextSwitcher";
 
 const HeroContainer = styled(Box)(({ theme }) => ({
-  minHeight: '100vh',
-  height: '100vh',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  background: 'linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 25%, #0a0a0a 50%, #0f0f0f 75%, #0a0a0a 100%)',
-  position: 'relative',
-  overflow: 'hidden',
-  marginTop: '-64px', // Compensate for the fixed header
-  paddingTop: '64px', // Add padding to account for header height
+  minHeight: "100vh",
+  height: "100vh",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  background:
+    "linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 25%, #0a0a0a 50%, #0f0f0a 75%, #0a0a0a 100%)",
+  position: "relative",
+  overflow: "hidden",
+  marginTop: "-64px", // Compensate for the fixed header
+  paddingTop: "64px", // Add padding to account for header height
   marginBottom: 0, // Remove any bottom margin
-  borderBottom: 'none', // Remove any border
-  [theme.breakpoints.down('sm')]: {
-    marginTop: '-56px',
-    paddingTop: '56px',
+  borderBottom: "none", // Remove any border
+  [theme.breakpoints.down("sm")]: {
+    marginTop: "-56px",
+    paddingTop: "56px",
   },
-  [theme.breakpoints.up('lg')]: {
-    marginTop: '-72px',
-    paddingTop: '72px',
+  [theme.breakpoints.up("lg")]: {
+    marginTop: "-72px",
+    paddingTop: "72px",
   },
-  '&::before': {
+  "&::before": {
     content: '""',
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    background: 'radial-gradient(circle at 20% 80%, rgba(0, 60, 79, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(56, 142, 60, 0.15) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(0, 60, 79, 0.1) 0%, transparent 50%)',
-    animation: 'backgroundShift 8s ease-in-out infinite',
+    background:
+      "radial-gradient(circle at 20% 80%, rgba(0, 60, 79, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(56, 142, 60, 0.15) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(0, 60, 79, 0.1) 0%, transparent 50%)",
+    animation: "backgroundShift 8s ease-in-out infinite",
   },
 }));
 
 const FloatingElements = styled(Box)({
-  position: 'absolute',
+  position: "absolute",
   top: 0,
   left: 0,
-  width: '100%',
-  height: '100%',
-  overflow: 'hidden',
-  pointerEvents: 'none',
+  width: "100%",
+  height: "100%",
+  overflow: "hidden",
+  pointerEvents: "none",
 });
 
-const FloatingCircle = styled('div')(({ delay, size, color }) => ({
-  position: 'absolute',
+const FloatingCircle = styled("div")(({ delay, size, color }) => ({
+  position: "absolute",
   width: size,
   height: size,
-  borderRadius: '50%',
+  borderRadius: "50%",
   background: color,
   opacity: 0.25,
   animation: `float 6s ease-in-out infinite`,
   animationDelay: `${delay}s`,
-  filter: 'blur(0.5px)',
+  filter: "blur(0.5px)",
   boxShadow: `0 0 30px ${color}60, 0 0 60px ${color}40`,
 }));
 
-const GlowingOrb = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  width: '300px',
-  height: '300px',
-  borderRadius: '50%',
+const GlowingOrb = styled("div")(({ theme }) => ({
+  position: "absolute",
+  width: "300px",
+  height: "300px",
+  borderRadius: "50%",
   background: `radial-gradient(circle, ${theme.palette.primary.main}15 0%, transparent 70%)`,
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  animation: 'pulse 4s ease-in-out infinite',
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  animation: "pulse 4s ease-in-out infinite",
   zIndex: 1,
   boxShadow: `0 0 60px ${theme.palette.primary.main}20`,
 }));
 
 const ContentContainer = styled(Box)(({ theme }) => ({
-  textAlign: 'center',
-  color: 'white',
+  textAlign: "center",
+  color: "white",
   zIndex: 20,
-  position: 'relative',
-  maxWidth: '800px',
-  mx: 'auto',
+  position: "relative",
+  maxWidth: "800px",
+  mx: "auto",
   px: 3,
 }));
 
 const AnimatedTitle = styled(Typography)({
-  background: 'linear-gradient(45deg, #fff, #f0f0f0, #fff)',
-  backgroundSize: '200% 200%',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-  backgroundClip: 'text',
-  animation: 'shimmer 3s ease-in-out infinite',
-  textShadow: '0 0 30px rgba(255, 255, 255, 0.5)',
+  background: "linear-gradient(45deg, #fff, #f0f0f0, #fff)",
+  backgroundSize: "200% 200%",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  backgroundClip: "text",
+  animation: "shimmer 3s ease-in-out infinite",
+  textShadow: "0 0 30px rgba(255, 255, 255, 0.5)",
 });
 
 const StatsContainer = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'center',
+  display: "flex",
+  justifyContent: "center",
   gap: theme.spacing(4),
-  flexWrap: 'wrap',
+  flexWrap: "wrap",
 }));
 
 const StatItem = styled(Box)(({ theme }) => ({
-  textAlign: 'center',
+  textAlign: "center",
   padding: theme.spacing(2),
-  borderRadius: '12px',
-  background: 'rgba(255, 255, 255, 0.05)',
-  backdropFilter: 'blur(10px)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  transition: 'all 0.3s ease',
-  '&:hover': {
-    transform: 'translateY(-5px)',
-    background: 'rgba(255, 255, 255, 0.1)',
-    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
+  borderRadius: "12px",
+  background: "rgba(255, 255, 255, 0.05)",
+  backdropFilter: "blur(10px)",
+  border: "1px solid rgba(255, 255, 255, 0.1)",
+  transition: "all 0.3s ease",
+  "&:hover": {
+    transform: "translateY(-5px)",
+    background: "rgba(255, 255, 255, 0.1)",
+    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
   },
 }));
 
@@ -137,7 +140,7 @@ const HeroBanner = () => {
 
   useEffect(() => {
     // Add CSS animations dynamically
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
       @keyframes backgroundShift {
         0%, 100% {
@@ -345,190 +348,228 @@ const HeroBanner = () => {
       <FloatingElements>
         {circlePositions.length > 0 && (
           <>
-            <FloatingCircle 
-              delay={0} 
-              size="80px" 
-              color="#003c4f" 
-              style={{ 
-                top: `${circlePositions[0]?.top}%`, 
-                left: `${circlePositions[0]?.left}%` 
-              }} 
+            <FloatingCircle
+              delay={0}
+              size="80px"
+              color="#003c4f"
+              style={{
+                top: `${circlePositions[0]?.top}%`,
+                left: `${circlePositions[0]?.left}%`,
+              }}
             />
-            <FloatingCircle 
-              delay={2} 
-              size="60px" 
-              color="#388e3c" 
-              style={{ 
-                top: `${circlePositions[1]?.top}%`, 
-                left: `${circlePositions[1]?.left}%` 
-              }} 
+            <FloatingCircle
+              delay={2}
+              size="60px"
+              color="#388e3c"
+              style={{
+                top: `${circlePositions[1]?.top}%`,
+                left: `${circlePositions[1]?.left}%`,
+              }}
             />
-            <FloatingCircle 
-              delay={4} 
-              size="100px" 
-              color="#003c4f" 
-              style={{ 
-                top: `${circlePositions[2]?.top}%`, 
-                left: `${circlePositions[2]?.left}%` 
-              }} 
+            <FloatingCircle
+              delay={4}
+              size="100px"
+              color="#003c4f"
+              style={{
+                top: `${circlePositions[2]?.top}%`,
+                left: `${circlePositions[2]?.left}%`,
+              }}
             />
-            <FloatingCircle 
-              delay={1} 
-              size="70px" 
-              color="#388e3c" 
-              style={{ 
-                top: `${circlePositions[3]?.top}%`, 
-                left: `${circlePositions[3]?.left}%` 
-              }} 
+            <FloatingCircle
+              delay={1}
+              size="70px"
+              color="#388e3c"
+              style={{
+                top: `${circlePositions[3]?.top}%`,
+                left: `${circlePositions[3]?.left}%`,
+              }}
             />
-            <FloatingCircle 
-              delay={3} 
-              size="90px" 
-              color="#003c4f" 
-              style={{ 
-                top: `${circlePositions[4]?.top}%`, 
-                left: `${circlePositions[4]?.left}%` 
-              }} 
+            <FloatingCircle
+              delay={3}
+              size="90px"
+              color="#003c4f"
+              style={{
+                top: `${circlePositions[4]?.top}%`,
+                left: `${circlePositions[4]?.left}%`,
+              }}
             />
           </>
         )}
-        
+
         {/* Sharp animated lines */}
-        <div style={{
-          position: 'absolute',
-          top: '15%',
-          left: '5%',
-          width: '3px',
-          height: '120px',
-          background: 'linear-gradient(to bottom, transparent, #003c4f, transparent)',
-          animation: 'pulse 3s ease-in-out infinite',
-          animationDelay: '1s',
-          opacity: 0.6
-        }} />
-        <div style={{
-          position: 'absolute',
-          top: '25%',
-          right: '10%',
-          width: '3px',
-          height: '100px',
-          background: 'linear-gradient(to bottom, transparent, #388e3c, transparent)',
-          animation: 'pulse 3s ease-in-out infinite',
-          animationDelay: '2s',
-          opacity: 0.6
-        }} />
-        <div style={{
-          position: 'absolute',
-          bottom: '20%',
-          left: '15%',
-          width: '120px',
-          height: '3px',
-          background: 'linear-gradient(to right, transparent, #003c4f, transparent)',
-          animation: 'pulse 4s ease-in-out infinite',
-          animationDelay: '0.5s',
-          opacity: 0.6
-        }} />
+        <div
+          style={{
+            position: "absolute",
+            top: "15%",
+            left: "5%",
+            width: "3px",
+            height: "120px",
+            background:
+              "linear-gradient(to bottom, transparent, #003c4f, transparent)",
+            animation: "pulse 3s ease-in-out infinite",
+            animationDelay: "1s",
+            opacity: 0.6,
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: "25%",
+            right: "10%",
+            width: "3px",
+            height: "100px",
+            background:
+              "linear-gradient(to bottom, transparent, #388e3c, transparent)",
+            animation: "pulse 3s ease-in-out infinite",
+            animationDelay: "2s",
+            opacity: 0.6,
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            bottom: "20%",
+            left: "15%",
+            width: "120px",
+            height: "3px",
+            background:
+              "linear-gradient(to right, transparent, #003c4f, transparent)",
+            animation: "pulse 4s ease-in-out infinite",
+            animationDelay: "0.5s",
+            opacity: 0.6,
+          }}
+        />
       </FloatingElements>
 
       {/* Glowing Orb */}
       <GlowingOrb />
 
       <Container maxWidth="lg">
-        <Box sx={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'space-between',
-          flexDirection: { xs: 'column', md: 'row' },
-          gap: { xs: 4, md: 6 },
-          minHeight: '80vh'
-        }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexDirection: { xs: "column", md: "row" },
+            gap: { xs: 4, md: 6 },
+            minHeight: "80vh",
+          }}
+        >
           {/* Left Side - Content */}
-          <Box sx={{ 
-            flex: 1, 
-            textAlign: { xs: 'center', md: 'left' },
-            maxWidth: { xs: '100%', md: '50%' }
-          }}>
-            <AnimatedTitle 
-              variant="h1" 
+          <Box
+            sx={{
+              flex: 1,
+              textAlign: { xs: "center", md: "left" },
+              maxWidth: { xs: "100%", md: "50%" },
+            }}
+          >
+            <AnimatedTitle
+              variant="h1"
               className="slide-in-left"
-              sx={{ 
-                fontSize: { xs: '2rem', md: '3rem', lg: '3.5rem' },
+              sx={{
+                fontSize: { xs: "2rem", md: "3rem", lg: "3.5rem" },
                 fontWeight: 800,
                 mb: 3,
-                letterSpacing: '-0.02em',
+                letterSpacing: "-0.02em",
+                whiteSpace: "nowrap",
               }}
             >
               One-stop access to
-              <br />
-              <span 
-                className="bounce-in"
-                style={{ 
-                  background: 'linear-gradient(45deg, #388e3c, #4caf50, #2e7d32)', 
-                  WebkitBackgroundClip: 'text', 
-                  WebkitTextFillColor: 'transparent', 
-                  backgroundClip: 'text',
-                  display: 'inline-block',
-                  animationDelay: '0.8s',
-                  textShadow: '0 0 20px rgba(56, 142, 60, 0.3)'
-                }}
-              >
-                digital innovation
-              </span>
             </AnimatedTitle>
+            <Typography
+              variant="h1"
+              sx={{
+                fontSize: { xs: "2rem", md: "3rem", lg: "3.5rem" },
+                fontWeight: 800,
+                mb: 3,
+                letterSpacing: "-0.02em",
+                display: "block",
+                lineHeight: 1.1,
+              }}
+            >
+              <AnimatedTextSwitcher
+                phrases={[
+                  // "Lead generation",
+                  "Software development",
+                  "Mobile development",
+                  "IT services",
+                  "Web design",
+                  "DIGITAL INNOVATION",
+                ]}
+                fontSize="3.2rem"
+                isNeonApplied={true}
+              />
+            </Typography>
 
-            <Typography 
-              variant="h2" 
+            <Typography
+              variant="h2"
               className="slide-in-right"
-              sx={{ 
-                fontSize: { xs: '1rem', md: '1.2rem', lg: '1.4rem' },
+              sx={{
+                fontSize: { xs: "1rem", md: "1.2rem", lg: "1.4rem" },
                 fontWeight: 400,
                 mb: 4,
                 opacity: 0.9,
-                maxWidth: '600px',
+                maxWidth: "600px",
                 lineHeight: 1.4,
-                color: '#e0e0e0'
+                color: "#e0e0e0",
               }}
             >
-              Amplify business impact with Infoxygen's specialized knowledge and technology-based solutions
+              Amplify business impact with Infoxygen's specialized knowledge and
+              technology-based solutions
             </Typography>
 
-            <ActionButton colorVariant='secondary' text="Launch Platform" direction="left" radius={10} />
-
+            <ActionButton
+              colorVariant="secondary"
+              text="Launch Platform"
+              direction="left"
+              radius={10}
+            />
           </Box>
 
           {/* Right Side - Animated Logo */}
-          <Box sx={{ 
-            flex: 1, 
-            display: 'flex', 
-            justifyContent: { xs: 'center', md: 'flex-end' },
-            alignItems: 'center',
-            maxWidth: { xs: '100%', md: '50%' },
-            position: 'relative',
-            '&::before': {
-              content: '""',
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: '400px',
-              height: '400px',
-              borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%)',
-              zIndex: 0,
-            }
-          }}>
+          <Box
+            sx={{
+              flex: 1,
+              display: "flex",
+              justifyContent: { xs: "center", md: "flex-end" },
+              alignItems: "center",
+              maxWidth: { xs: "100%", md: "50%" },
+              position: "relative",
+              ml: { xs: 0, md: 6 },
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "400px",
+                height: "400px",
+                borderRadius: "50%",
+                background:
+                  "radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%)",
+                zIndex: 0,
+              },
+            }}
+          >
             <AnimatedLogoAdvanced
               pieces={[
-                new URL('/src/assets/logos/logo-piece-1.png', import.meta.url).href,
-                new URL('/src/assets/logos/logo-piece-2.png', import.meta.url).href,
-                new URL('/src/assets/logos/logo-piece-3.png', import.meta.url).href,
+                new URL("/src/assets/logos/logo-piece-1.png", import.meta.url)
+                  .href,
+                new URL("/src/assets/logos/logo-piece-2.png", import.meta.url)
+                  .href,
+                new URL("/src/assets/logos/logo-piece-3.png", import.meta.url)
+                  .href,
               ]}
-              finalLogo={new URL('/src/assets/logos/dark-only-logo.png', import.meta.url).href}
+              finalLogo={
+                new URL("/src/assets/logos/dark-only-logo.png", import.meta.url)
+                  .href
+              }
               animationStyle="explode"
               delay={2000}
               pieceDelay={200}
               showAssemblyEffect={true}
               continuous={true}
-              onAnimationComplete={() => console.log('Logo assembled!')}
+              onAnimationComplete={() => console.log("Logo assembled!")}
             />
           </Box>
         </Box>
@@ -536,77 +577,89 @@ const HeroBanner = () => {
         {/* Stats Section */}
         <StatsContainer className="fade-in-up-delay-3" mb={2} mt={0}>
           <StatItem className="stat-item-hover">
-            <Typography 
-              variant="h3" 
+            <Typography
+              variant="h3"
               className="bounce-in"
-              sx={{ 
-                fontSize: '2.5rem', 
-                fontWeight: 700, 
-                color: '#003c4f', 
+              sx={{
+                fontSize: "2.5rem",
+                fontWeight: 700,
+                color: "#003c4f",
                 mb: 1,
-                animationDelay: '1s'
+                animationDelay: "1s",
               }}
             >
               200+
             </Typography>
-            <Typography variant="body2" sx={{ color: '#b0b0b0', fontSize: '0.9rem' }}>
+            <Typography
+              variant="body2"
+              sx={{ color: "#b0b0b0", fontSize: "0.9rem" }}
+            >
               Industry & Tech Experts
             </Typography>
           </StatItem>
 
           <StatItem className="stat-item-hover">
-            <Typography 
-              variant="h3" 
+            <Typography
+              variant="h3"
               className="bounce-in"
-              sx={{ 
-                fontSize: '2.5rem', 
-                fontWeight: 700, 
-                color: '#388e3c', 
+              sx={{
+                fontSize: "2.5rem",
+                fontWeight: 700,
+                color: "#388e3c",
                 mb: 1,
-                animationDelay: '1.2s'
+                animationDelay: "1.2s",
               }}
             >
               5
             </Typography>
-            <Typography variant="body2" sx={{ color: '#b0b0b0', fontSize: '0.9rem' }}>
+            <Typography
+              variant="body2"
+              sx={{ color: "#b0b0b0", fontSize: "0.9rem" }}
+            >
               Countries
             </Typography>
           </StatItem>
 
           <StatItem className="stat-item-hover">
-            <Typography 
-              variant="h3" 
+            <Typography
+              variant="h3"
               className="bounce-in"
-              sx={{ 
-                fontSize: '2.5rem', 
-                fontWeight: 700, 
-                color: '#003c4f', 
+              sx={{
+                fontSize: "2.5rem",
+                fontWeight: 700,
+                color: "#003c4f",
                 mb: 1,
-                animationDelay: '1.4s'
+                animationDelay: "1.4s",
               }}
             >
               $10.30M
             </Typography>
-            <Typography variant="body2" sx={{ color: '#b0b0b0', fontSize: '0.9rem' }}>
+            <Typography
+              variant="body2"
+              sx={{ color: "#b0b0b0", fontSize: "0.9rem" }}
+            >
               TTM Revenue
             </Typography>
           </StatItem>
 
           <StatItem className="stat-item-hover">
-            <Typography 
-              variant="h3" 
+            <Typography
+              variant="h3"
               className="bounce-in"
-              sx={{ 
-                fontSize: '2.5rem', 
-                fontWeight: 700, 
-                color: '#388e3c', 
+              sx={{
+                fontSize: "2.5rem",
+                fontWeight: 700,
+                color: "#388e3c",
                 mb: 1,
-                animationDelay: '1.6s'
+                animationDelay: "1.6s",
               }}
             >
               50+
             </Typography>
-            <Typography variant="body2" sx={{ color: '#b0b0b0', fontSize: '0.9rem' }}>
+            <Typography
+              variant="body2"
+              sx={{ color: "#b0b0b0", fontSize: "0.9rem" }}
+            >
               Services Clients Annually
             </Typography>
           </StatItem>
@@ -616,4 +669,4 @@ const HeroBanner = () => {
   );
 };
 
-export default HeroBanner; 
+export default HeroBanner;

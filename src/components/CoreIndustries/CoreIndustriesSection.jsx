@@ -24,14 +24,7 @@ const CoreIndustriesSection = () => {
   return (
     <SectionContainer>
       <SectionHeader
-        title={
-          <>
-            <span style={{ color: theme.palette.primary.main }}>CORE</span>{" "}
-            <span style={{ color: theme.palette.secondary.main }}>
-              INDUSTRIES
-            </span>
-          </>
-        }
+        titleWords={"Core Industries"}
         description="Empowering essential sectors with innovative contact center solutions, driving operational excellence and digital transformation across industries."
         showUnderline={true}
         showButton={true}

@@ -7,6 +7,7 @@ import {
 import { AiPartnersContainer } from "./StyledAiPartner";
 import SectionHeader from "../SectionHeader";
 import theme from "../../theme";
+import { useTheme } from "@mui/material";
 
 // Add keyframes for backgroundShift if not already present
 if (typeof window !== "undefined" && window.document) {
@@ -46,17 +47,11 @@ const AiPartnerSliderContainer = ({
   style = {},
   ...props
 }) => {
+  const theme = useTheme();
   return (
     <AiPartnersContainer className={className} style={style} {...props}>
       <SectionHeader
-        title={
-          <>
-            <span style={{ color: theme.palette.primary.main }}>AI</span>{" "}
-            <span style={{ color: theme.palette.secondary.main }}>
-              PARTNERS
-            </span>
-          </>
-        }
+        titleWords={"AI Partners"}
         description={
           "Infoxygen's AI Partners deliver intelligent automation and decision-making power, helping businesses become faster, leaner, and more competitive."
         }
