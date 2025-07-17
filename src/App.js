@@ -6,20 +6,24 @@ import UnderMaintenance from "./components/UnderMaintenance";
 import HeroBanner from "./components/HeroBanner/HeroBanner";
 import AIPartnersSection from "./components/AiPartners/AIPartnersSection";
 import CoreIndustriesSection from "./components/CoreIndustries/CoreIndustriesSection";
+import WhyChooseInfoxygenSection from "./components/WhyChooseInfoxygen/WhyChooseInfoxygenSection";
 
 const App = () => {
   return (
-    <Box sx={{ 
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-    }}>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <Header />
       <Box sx={{ flex: 1 }}>
         <HeroBanner />
-         {/* AI Partners Infinity Slider */}
-          <AIPartnersSection />
-          <CoreIndustriesSection />
+        {/* AI Partners Infinity Slider */}
+        <AIPartnersSection />
+        <CoreIndustriesSection />
+        <WhyChooseInfoxygenSection />
         <UnderMaintenance />
       </Box>
       <Footer />
@@ -27,4 +31,4 @@ const App = () => {
   );
 };
 
-export default App; 
+export default App;
