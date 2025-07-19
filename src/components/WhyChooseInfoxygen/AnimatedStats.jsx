@@ -29,9 +29,10 @@ const StatItem = styled(Box)(({ theme }) => ({
 }));
 
 const stats = [
-  { value: "20+", label: "Industry & Tech Experts" },
-  { value: "2", label: "Countries" },
-  { value: "$1.30M", label: "TTM Revenue" },
+  { value: "10+", label: "Industry & Tech Experts" },
+  { value: "3", label: "Countries" },
+  { value: "6+", label: "Years of Exp" },
+  { value: "$80.3T", label: "TTM Revenue" },
   { value: "5+", label: "Projects" },
   { value: "5", label: "Services Clients Annually" },
 ];

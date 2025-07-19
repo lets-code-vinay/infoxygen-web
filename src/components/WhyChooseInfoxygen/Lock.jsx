@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, useTheme } from "@mui/material";
+import Happy_Client from "../../assets/images/whyChooseIo2/happyClients.jpg";
 
 const Lock = () => {
   const theme = useTheme();
@@ -108,7 +109,7 @@ const Lock = () => {
             width: "100%",
             height: "100%",
           }}
-          src="https://imgs.search.brave.com/omgyZ_wGM0C-8fKx_rct9vEOs-Q8ovtgef87653BZ58/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hNTcu/Zm94c3BvcnRzLmNv/bS9zdGF0aWNzLmZv/eHNwb3J0cy5jb20v/d3d3LmZveHNwb3J0/cy5jb20vY29udGVu/dC91cGxvYWRzLzIw/MjUvMDcvMTI5MC83/MjQvanVhbi5qcGc_/dmU9MSZ0bD0x"
+          src={Happy_Client}
           alt="Lock Center"
         />
       </Box>
