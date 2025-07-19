@@ -1,7 +1,6 @@
 import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
-import AnimatedTextSwitcher from "../HeroBanner/AnimatedTextSwitcher";
-// import AnimatedBar from "../CoreIndustries/AnimatedBar"; // If you have a reusable bar component
+import { Box, Grid } from "@mui/material";
+import SectionHeader from "../SectionHeader";
 import AnimatedStats from "./AnimatedStats";
 import Lock from "./Lock";
 
@@ -9,48 +8,75 @@ const WhyChooseInfoxygenSection = () => {
   return (
     <Box
       component="section"
-      sx={{ py: { xs: 6, md: 10 }, px: 2, background: "#101010" }}
+      sx={{
+        py: { xs: 6, md: 10 },
+        px: { xs: 1, sm: 2, md: 4 },
+        background: "#101010",
+      }}
     >
-      <Grid container spacing={6} alignItems="center">
-        {/* Left Side */}
-        <Grid item xs={12} md={6}>
-          <Box sx={{ textAlign: { xs: "center", md: "left" } }}>
-            <AnimatedTextSwitcher
-              phrases={["WHY CHOOSE INFOXYGEN?"]}
-              fontSize="2.4rem"
-              isNeonApplied={true}
-            />
-            {/* Animated bar placeholder */}
-            <Box
-              sx={{
-                mt: 2,
-                mb: 4,
-                width: 120,
-                height: 6,
-                background: "linear-gradient(90deg, #003c4f, #388e3c)",
-                borderRadius: 3,
-                mx: { xs: "auto", md: 0 },
-                animation: "pulse 2s infinite alternate",
-              }}
-            />
-            {/* AnimatedStats: 3 cards, animated in */}
-            <AnimatedStats />
-          </Box>
-        </Grid>
-        {/* Right Side */}
-        <Grid item xs={12} md={6}>
-          <Box
+      <SectionHeader
+        titleWords={"WHY CHOOSE INFOXYGEN?"}
+        description="Discover the unique advantages that set Infoxygen apart in the contact center industry, delivering exceptional value and innovative solutions."
+        showUnderline={true}
+        showButton={false}
+        buttonProps={{
+          text: "Learn More",
+          direction: "left",
+          radius: 0,
+          colorVariant: "primary",
+        }}
+        isNeonApplied={false}
+        fontSize="2.4rem"
+      />
+
+      <Box sx={{ width: { xs: "100%", md: "80%", lg: "60%" }, mx: "auto" }}>
+        <Grid
+          container
+          spacing={{ xs: 3, md: 6 }}
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          {/* Left Side */}
+          <Grid
+            item
+            // xs={12}
+            // md={6}
+            // lg={6}
             sx={{
               display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              minHeight: 320,
+              justifyContent: { xs: "center", md: "flex-start" },
+              width: { xs: "100%", md: "100%", lg: "50%" },
             }}
           >
-            <Lock />
-          </Box>
+            <Box
+              sx={{
+                textAlign: { xs: "center", md: "left" },
+                p: { xs: 0, md: 2 },
+                display: "flex",
+                justifyContent: { xs: "center", md: "flex-start" },
+              }}
+            >
+              {/* AnimatedStats: 3 cards, animated in */}
+              <AnimatedStats />
+            </Box>
+          </Grid>
+          {/* Right Side */}
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                minHeight: { xs: 200, md: 320 },
+                width: "100%",
+                mt: { xs: 4, md: 0 },
+              }}
+            >
+              <Lock />
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
+      </Box>
     </Box>
   );
 };

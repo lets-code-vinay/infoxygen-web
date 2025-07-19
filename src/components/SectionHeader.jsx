@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useLayoutEffect } from "react";
 import { Box } from "@mui/material";
 import ActionButton from "./CustomButtons/ActionButton/ActionButton";
 import {
@@ -16,11 +16,19 @@ const SectionHeader = ({
   buttonProps = {},
   titleWords,
   titleColors,
+  isNeonApplied = false,
+  fontSize = "2.2rem",
 }) => {
   const theme = useTheme();
-  // If titleWords is a string, split it into words for ColorSwitchTitle
-  const wordsArray =
-    typeof titleWords === "string" ? titleWords.split(" ") : undefined;
+  const titleRef = useRef(null);
+  const [titleWidth, setTitleWidth] = useState(null);
+
+  useLayoutEffect(() => {
+    if (titleRef.current) {
+      setTitleWidth(titleRef.current.offsetWidth);
+    }
+  }, [titleWords, title, fontSize]);
+
   return (
     <Box
       sx={{
@@ -35,19 +43,36 @@ const SectionHeader = ({
       }}
     >
       <Box sx={{ flex: 1, minWidth: 0 }}>
-        <Box
-          sx={{
-            fontWeight: 700,
-            fontSize: { xs: "1.5rem", md: "2.2rem" },
-            textAlign: "left",
-            color: "inherit",
-            mb: 1,
-            display: "block",
-          }}
-        >
-          {titleWords ? <ColorSwitchTitle title={titleWords} /> : title}
+        {/* Title + AnimatedSliderBar in a box with auto width */}
+        <Box sx={{ width: "auto", display: "inline-block" }}>
+          <Box
+            ref={titleRef}
+            sx={{
+              fontWeight: 700,
+              fontSize: { xs: "1.5rem", md: fontSize },
+              textAlign: "left",
+              color: "inherit",
+              mb: 1,
+              display: "inline-block",
+              width: "auto",
+            }}
+          >
+            {titleWords ? (
+              <ColorSwitchTitle
+                title={titleWords}
+                isNeonApplied={isNeonApplied}
+                fontSize={fontSize}
+              />
+            ) : (
+              title
+            )}
+          </Box>
+          {showUnderline && (
+            <AnimatedSliderBar
+              sx={{ marginLeft: 0, width: titleWidth ? titleWidth : "100%" }}
+            />
+          )}
         </Box>
-        {showUnderline && <AnimatedSliderBar sx={{ marginLeft: 0 }} />}
         {description && (
           <Description
             sx={{ maxWidth: "90%", width: "90%", textAlign: "left", mx: 0 }}

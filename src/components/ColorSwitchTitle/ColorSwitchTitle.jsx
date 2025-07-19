@@ -13,14 +13,18 @@ const ColorSwitchTitle = ({
   // Split the title string into words
   const words = title ? title.split(" ") : [];
   // Alternate colors: primary, secondary, primary, ...
-  const baseColors = words.map((_, idx) =>
-    idx % 2 === 0 ? theme.palette.primary.main : theme.palette.secondary.main
-  );
-  const displayColors = hovered ? [...baseColors].reverse() : baseColors;
+  const getColor = (idx) => {
+    const isEven = idx % 2 === 0;
+    if (!hovered) {
+      return isEven ? theme.palette.primary.main : theme.palette.secondary.main;
+    } else {
+      return isEven ? theme.palette.secondary.main : theme.palette.primary.main;
+    }
+  };
   // Neon effect: secondary neon on primary text, primary neon on secondary text, with reduced whiteness and opacity
   const getNeonStyle = (idx) => {
     if (!isNeonApplied) return {};
-    const isPrimary = idx % 2 === 0;
+    const isPrimary = (!hovered && idx % 2 === 0) || (hovered && idx % 2 !== 0);
     return isPrimary
       ? {
           textShadow: `0 0 4px rgba(255,255,255,0.3), 0 0 10px ${theme.palette.secondary.main}99, 0 0 18px ${theme.palette.secondary.main}66`,
@@ -40,7 +44,7 @@ const ColorSwitchTitle = ({
         <span
           key={word + idx}
           style={{
-            color: displayColors[idx % displayColors.length],
+            color: getColor(idx),
             fontWeight: 700,
             fontSize: fontSize,
             marginRight: idx < words.length - 1 ? 8 : 0,

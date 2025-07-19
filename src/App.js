@@ -22,8 +22,8 @@ const App = () => {
         <HeroBanner />
         {/* AI Partners Infinity Slider */}
         <AIPartnersSection />
-        <CoreIndustriesSection />
         <WhyChooseInfoxygenSection />
+        <CoreIndustriesSection />
         <UnderMaintenance />
       </Box>
       <Footer />

@@ -96,28 +96,6 @@ const AnimatedTitle = styled(Typography)({
   textShadow: "0 0 30px rgba(255, 255, 255, 0.5)",
 });
 
-const StatsContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
-  gap: theme.spacing(4),
-  flexWrap: "wrap",
-}));
-
-const StatItem = styled(Box)(({ theme }) => ({
-  textAlign: "center",
-  padding: theme.spacing(2),
-  borderRadius: "12px",
-  background: "rgba(255, 255, 255, 0.05)",
-  backdropFilter: "blur(10px)",
-  border: "1px solid rgba(255, 255, 255, 0.1)",
-  transition: "all 0.3s ease",
-  "&:hover": {
-    transform: "translateY(-5px)",
-    background: "rgba(255, 255, 255, 0.1)",
-    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
-  },
-}));
-
 const HeroBanner = () => {
   const animationRef = useRef(null);
   const [circlePositions, setCirclePositions] = useState([]);
@@ -573,97 +551,6 @@ const HeroBanner = () => {
             />
           </Box>
         </Box>
-
-        {/* Stats Section */}
-        <StatsContainer className="fade-in-up-delay-3" mb={2} mt={0}>
-          <StatItem className="stat-item-hover">
-            <Typography
-              variant="h3"
-              className="bounce-in"
-              sx={{
-                fontSize: "2.5rem",
-                fontWeight: 700,
-                color: "#003c4f",
-                mb: 1,
-                animationDelay: "1s",
-              }}
-            >
-              200+
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{ color: "#b0b0b0", fontSize: "0.9rem" }}
-            >
-              Industry & Tech Experts
-            </Typography>
-          </StatItem>
-
-          <StatItem className="stat-item-hover">
-            <Typography
-              variant="h3"
-              className="bounce-in"
-              sx={{
-                fontSize: "2.5rem",
-                fontWeight: 700,
-                color: "#388e3c",
-                mb: 1,
-                animationDelay: "1.2s",
-              }}
-            >
-              5
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{ color: "#b0b0b0", fontSize: "0.9rem" }}
-            >
-              Countries
-            </Typography>
-          </StatItem>
-
-          <StatItem className="stat-item-hover">
-            <Typography
-              variant="h3"
-              className="bounce-in"
-              sx={{
-                fontSize: "2.5rem",
-                fontWeight: 700,
-                color: "#003c4f",
-                mb: 1,
-                animationDelay: "1.4s",
-              }}
-            >
-              $10.30M
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{ color: "#b0b0b0", fontSize: "0.9rem" }}
-            >
-              TTM Revenue
-            </Typography>
-          </StatItem>
-
-          <StatItem className="stat-item-hover">
-            <Typography
-              variant="h3"
-              className="bounce-in"
-              sx={{
-                fontSize: "2.5rem",
-                fontWeight: 700,
-                color: "#388e3c",
-                mb: 1,
-                animationDelay: "1.6s",
-              }}
-            >
-              50+
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{ color: "#b0b0b0", fontSize: "0.9rem" }}
-            >
-              Services Clients Annually
-            </Typography>
-          </StatItem>
-        </StatsContainer>
       </Container>
     </HeroContainer>
   );

@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Box } from "@mui/material";
+import React from "react";
+import { Box, useTheme } from "@mui/material";
 
 const Lock = () => {
-  const [angle, setAngle] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAngle((prev) => (prev + 1) % 360);
-    }, 20);
-    return () => clearInterval(interval);
-  }, []);
-
+  const theme = useTheme();
   const size = 450;
   const circleRadius = 150;
-  const textRadius = circleRadius - 10;
-  const fontSize = 32;
-  const strokeWidth = 32;
+  const textRadius = circleRadius - 8;
+  const fontSize = 22; // Decreased text size
+  const strokeWidth = 42;
 
   return (
     <Box
@@ -30,6 +22,12 @@ const Lock = () => {
         overflow: "visible",
       }}
     >
+      <style>{`
+        @keyframes rotate360 {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
       <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
@@ -57,14 +55,13 @@ const Lock = () => {
           cy={size / 2}
           r={circleRadius}
           fill="none"
-          stroke="#fff"
+          stroke={theme.palette.secondary.main}
           strokeWidth={strokeWidth}
         />
         <g
           style={{
-            transform: `rotate(${angle}deg)`,
             transformOrigin: `${size / 2}px ${size / 2}px`,
-            transition: "transform 0.1s linear",
+            animation: "rotate360 12s linear infinite",
           }}
         >
           <use xlinkHref="#circlePath" fill="none" />
@@ -72,15 +69,14 @@ const Lock = () => {
             className="rotating-text"
             fontSize={fontSize}
             fontWeight={700}
-            fill="#f00ff0"
+            fill={theme.palette.primary.main}
           >
             <textPath
               xlinkHref="#circlePath"
               textLength={2 * Math.PI * textRadius}
               startOffset="0"
             >
-              Topweb Inspiring Web Agency - Adixoo Brand Private Limited Indore
-              2023 -
+              Infoxygen - Powering Connections, Inspiring Innovation - 2025 -
             </textPath>
           </text>
         </g>
