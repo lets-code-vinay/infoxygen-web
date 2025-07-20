@@ -1,67 +1,71 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#003c4f',
-      light: '#005a7a',
-      dark: '#002a35',
-      contrastText: '#ffffff',
+      main: "#003c4f",
+      light: "#005a7a",
+      dark: "#002a35",
+      contrastText: "#ffffff",
     },
     secondary: {
-      main: '#388e3c',
-      light: '#4caf50',
-      dark: '#2e7d32',
-      contrastText: '#ffffff',
+      main: "#388e3c",
+      light: "#4caf50",
+      dark: "#2e7d32",
+      contrastText: "#ffffff",
     },
     accent: {
-      light: '#2b89a7',
+      light: "#2b89a7",
     },
     background: {
-      default: '#ffffff',
-      paper: '#ffffff',
+      default: "#ffffff",
+      paper: "#ffffff",
+      darkBg:
+        "linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 25%, #0a0a0a 50%, #0f0f0a 75%, #0a0a0a 100%)",
     },
+    darkBg:
+      "linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 25%, #0a0a0a 50%, #0f0f0a 75%, #0a0a0a 100%)",
     text: {
-      primary: '#333333',
-      secondary: '#666666',
+      primary: "#333333",
+      secondary: "#666666",
     },
   },
   typography: {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     h1: {
       fontWeight: 700,
-      fontSize: '2.5rem',
+      fontSize: "2.5rem",
     },
     h2: {
       fontWeight: 600,
-      fontSize: '2rem',
+      fontSize: "2rem",
     },
     h3: {
       fontWeight: 600,
-      fontSize: '1.75rem',
+      fontSize: "1.75rem",
     },
     h4: {
       fontWeight: 500,
-      fontSize: '1.5rem',
+      fontSize: "1.5rem",
     },
     h5: {
       fontWeight: 500,
-      fontSize: '1.25rem',
+      fontSize: "1.25rem",
     },
     h6: {
       fontWeight: 500,
-      fontSize: '1rem',
+      fontSize: "1rem",
     },
     body1: {
-      fontSize: '1rem',
+      fontSize: "1rem",
       lineHeight: 1.6,
     },
     body2: {
-      fontSize: '0.875rem',
+      fontSize: "0.875rem",
       lineHeight: 1.5,
     },
     button: {
-      textTransform: 'none',
+      textTransform: "none",
       fontWeight: 500,
     },
   },
@@ -73,27 +77,27 @@ const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          boxShadow: 'none',
-          borderRadius: '0',
+          boxShadow: "none",
+          borderRadius: "0",
         },
       },
     },
     MuiButton: {
       styleOverrides: {
         root: {
-          textTransform: 'none',
+          textTransform: "none",
           fontWeight: 500,
         },
         contained: {
-          boxShadow: '0 2px 8px rgba(0, 60, 79, 0.2)',
-          '&:hover': {
-            boxShadow: '0 4px 12px rgba(0, 60, 79, 0.3)',
+          boxShadow: "0 2px 8px rgba(0, 60, 79, 0.2)",
+          "&:hover": {
+            boxShadow: "0 4px 12px rgba(0, 60, 79, 0.3)",
           },
         },
         outlined: {
-          borderWidth: '2px',
-          '&:hover': {
-            borderWidth: '2px',
+          borderWidth: "2px",
+          "&:hover": {
+            borderWidth: "2px",
           },
         },
       },
@@ -101,34 +105,34 @@ const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-          borderRadius: '8px',
+          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+          borderRadius: "8px",
         },
       },
     },
     MuiPaper: {
       styleOverrides: {
         root: {
-          borderRadius: '8px',
+          borderRadius: "8px",
         },
       },
     },
     MuiMenu: {
       styleOverrides: {
         paper: {
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
-          borderRadius: '5px',
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
+          borderRadius: "5px",
         },
       },
     },
     MuiDrawer: {
       styleOverrides: {
         paper: {
-          borderRadius: '0',
+          borderRadius: "0",
         },
       },
     },
   },
 });
 
-export default theme; 
+export default theme;

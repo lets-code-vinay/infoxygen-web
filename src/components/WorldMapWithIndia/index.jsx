@@ -6,13 +6,14 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodata_worldIndiaHigh from "@amcharts/amcharts4-geodata/worldIndiaHigh";
 
-import { GSV_LOCATIONS } from "../../configs/OurPresenceConfig/gsvLocations";
+import { IO2_LOCATIONS } from "../../configs/OurPresenceConfig/io2Locations";
 import Typography from "@mui/material/Typography";
 import {
   ChartDiv,
   ButtonContainer,
   CountyName,
 } from "./StyledWorldMapWithIndia";
+import theme from "../../theme";
 
 am4core.useTheme(am4themes_animated);
 am4core.options.disableHoverOnTransform = "touch";
@@ -40,28 +41,22 @@ class WorldMapWithIndia extends Component {
     polygonSeries.mapPolygons.template.tooltipText = "{name}";
 
     let hoverState = polygonSeries.mapPolygons.template.states.create("hover");
-    hoverState.properties.fill = am4core.color("#51C1EC");
+    hoverState.properties.fill = am4core.color(theme.palette.primary.main);
     hoverState.properties.stroke = am4core.color("#000");
     hoverState.properties.strokeWidth = 1;
 
-    /**
-     * @description mini map
-     */
-    // chart.smallMap = new am4maps.SmallMap();
-    // chart.smallMap.series.push(polygonSeries);
-
-    // // rect box inside minimap
-    // chart.smallMap.rectangle.stroke = am4core.color("blue");
-    // chart.smallMap.rectangle.strokeWidth = 2;
-
-    // // outer border
-    // chart.smallMap.background.stroke = am4core.color("yellow");
-    // chart.smallMap.background.strokeOpacity = 1;
-    // chart.smallMap.background.fillOpacity = 1;
-
-    // // mini map location
-    // chart.smallMap.align = "right";
-    // chart.smallMap.valign = "top";
+    // --- Mini map (smallMap) customization ---
+    chart.smallMap = new am4maps.SmallMap();
+    chart.smallMap.series.push(polygonSeries);
+    // Decrease minimap size
+    chart.smallMap.width = 120;
+    chart.smallMap.height = 80;
+    // Move minimap to bottom left
+    chart.smallMap.align = "left";
+    chart.smallMap.valign = "bottom";
+    // Rectangle (viewport) color (primary)
+    chart.smallMap.rectangle.stroke = am4core.color(theme.palette.primary.main);
+    chart.smallMap.rectangle.strokeWidth = 2;
 
     /**
      * @description adding icons or images
@@ -85,7 +80,39 @@ class WorldMapWithIndia extends Component {
     imageSeriesTemplate.propertyFields.longitude = "longitude";
 
     // Add data for the three cities
-    imageSeries.data = GSV_LOCATIONS;
+    imageSeries.data = IO2_LOCATIONS;
+
+    // --- Keep country highlighted when hovering pin ---
+    imageSeriesTemplate.events.on("over", function (ev) {
+      var dataItem = ev.target.dataItem;
+      if (
+        dataItem &&
+        dataItem.dataContext &&
+        dataItem.dataContext.countryName
+      ) {
+        var foundPolygon = null;
+        polygonSeries.mapPolygons.each(function (polygon) {
+          if (
+            polygon.dataItem &&
+            polygon.dataItem.dataContext &&
+            polygon.dataItem.dataContext.name ===
+              dataItem.dataContext.countryName
+          ) {
+            foundPolygon = polygon;
+          }
+        });
+        if (foundPolygon) {
+          foundPolygon.isHover = true;
+          ev.target._linkedPolygon = foundPolygon;
+        }
+      }
+    });
+    imageSeriesTemplate.events.on("out", function (ev) {
+      if (ev.target._linkedPolygon) {
+        ev.target._linkedPolygon.isHover = false;
+        ev.target._linkedPolygon = null;
+      }
+    });
 
     /**
      * @description Showing countries name on hover
