@@ -46,7 +46,7 @@ const SiteMap = () => {
         overflow: "hidden",
       }}
     >
-      {/* Background image, right aligned */}
+      {/* Background image, right aligned   */}
       <Box
         sx={{
           position: "absolute",
