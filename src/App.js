@@ -8,6 +8,7 @@ import AIPartnersSection from "./components/AiPartners/AIPartnersSection";
 import CoreIndustriesSection from "./components/CoreIndustries/CoreIndustriesSection";
 import WhyChooseInfoxygenSection from "./components/WhyChooseInfoxygen/WhyChooseInfoxygenSection";
 import OurPresence from "./components/OurPresence";
+import SiteMap from "./components/SiteMap";
 
 const App = () => {
   return (
@@ -26,7 +27,8 @@ const App = () => {
         <WhyChooseInfoxygenSection />
         <CoreIndustriesSection />
         <OurPresence />
-        <UnderMaintenance />
+        <SiteMap />
+        {/* <UnderMaintenance /> */}
       </Box>
       <Footer />
     </Box>

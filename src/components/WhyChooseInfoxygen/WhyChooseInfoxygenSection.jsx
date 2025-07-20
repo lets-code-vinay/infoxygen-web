@@ -1,17 +1,19 @@
 import React from "react";
 import { Box, Grid } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import SectionHeader from "../SectionHeader";
 import AnimatedStats from "./AnimatedStats";
 import Lock from "./Lock";
 
 const WhyChooseInfoxygenSection = () => {
+  const theme = useTheme();
   return (
     <Box
       component="section"
       sx={{
         py: { xs: 6, md: 10 },
         px: { xs: 1, sm: 2, md: 4 },
-        background: "#101010",
+        background: theme.palette.darkBg,
       }}
     >
       <SectionHeader
@@ -28,7 +30,6 @@ const WhyChooseInfoxygenSection = () => {
         isNeonApplied={false}
         fontSize="2.4rem"
       />
-
       <Box sx={{ width: { xs: "100%", md: "80%", lg: "60%" }, mx: "auto" }}>
         <Grid
           container
@@ -37,23 +38,11 @@ const WhyChooseInfoxygenSection = () => {
           justifyContent="space-between"
         >
           {/* Left Side */}
-          <Grid
-            item
-            // xs={12}
-            // md={6}
-            // lg={6}
-            sx={{
-              display: "flex",
-              justifyContent: { xs: "center", md: "flex-start" },
-              width: { xs: "100%", md: "100%", lg: "50%" },
-            }}
-          >
+          <Grid item xs={12} md={6}>
             <Box
               sx={{
                 textAlign: { xs: "center", md: "left" },
                 p: { xs: 0, md: 2 },
-                display: "flex",
-                justifyContent: { xs: "center", md: "flex-start" },
               }}
             >
               {/* AnimatedStats: 3 cards, animated in */}

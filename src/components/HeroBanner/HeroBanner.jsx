@@ -3,6 +3,7 @@ import { Box, Container, Typography, Button, styled } from "@mui/material";
 import { AnimatedLogo, AnimatedLogoAdvanced } from "../AnimatedLogo";
 import ActionButton from "../CustomButtons/ActionButton/ActionButton";
 import AnimatedTextSwitcher from "./AnimatedTextSwitcher";
+import { useTheme } from "@mui/material/styles";
 
 const HeroContainer = styled(Box)(({ theme }) => ({
   minHeight: "100vh",
@@ -10,8 +11,7 @@ const HeroContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  background:
-    "linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 25%, #0a0a0a 50%, #0f0f0a 75%, #0a0a0a 100%)",
+  background: theme.palette.darkBg,
   position: "relative",
   overflow: "hidden",
   marginTop: "-64px", // Compensate for the fixed header

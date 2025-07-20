@@ -21,10 +21,10 @@ const theme = createTheme({
       default: "#ffffff",
       paper: "#ffffff",
       darkBg:
-        "linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 25%, #0a0a0a 50%, #0f0f0a 75%, #0a0a0a 100%)",
+        "linear-gradient(180deg, #060110 0%, #070211 10%, #060110 20%, #04020c 40%, #090316 60%, #04020c 80%, #000406 100%)",
     },
     darkBg:
-      "linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 25%, #0a0a0a 50%, #0f0f0a 75%, #0a0a0a 100%)",
+      "linear-gradient(180deg, #060110 0%, #070211 10%, #060110 20%, #04020c 40%, #090316 60%, #04020c 80%, #000406 100%)",
     text: {
       primary: "#333333",
       secondary: "#666666",
