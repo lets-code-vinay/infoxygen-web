@@ -7,6 +7,7 @@ import HeroBanner from "./components/HeroBanner/HeroBanner";
 import AIPartnersSection from "./components/AiPartners/AIPartnersSection";
 import CoreIndustriesSection from "./components/CoreIndustries/CoreIndustriesSection";
 import WhyChooseInfoxygenSection from "./components/WhyChooseInfoxygen/WhyChooseInfoxygenSection";
+import OurPresence from "./components/OurPresence";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <AIPartnersSection />
         <WhyChooseInfoxygenSection />
         <CoreIndustriesSection />
+        <OurPresence />
         <UnderMaintenance />
       </Box>
       <Footer />
