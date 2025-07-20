@@ -21,6 +21,7 @@ am4core.options.disableHoverOnTransform = "touch";
 class WorldMapWithIndia extends Component {
   componentDidMount() {
     let chart = am4core.create("chartdiv", am4maps.MapChart);
+    chart.logo.disabled = true;
     let lastSelected;
 
     chart.geodata = am4geodata_worldIndiaHigh;
@@ -158,7 +159,7 @@ class WorldMapWithIndia extends Component {
       .addEventListener("click", (_) => zoomToCountry("IN"));
     document
       .getElementById("select-europe")
-      .addEventListener("click", (_) => zoomToCountry("NL"));
+      .addEventListener("click", (_) => zoomToCountry("FR"));
   }
 
   componentWillUnmount() {

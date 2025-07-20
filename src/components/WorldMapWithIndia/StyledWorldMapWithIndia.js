@@ -9,6 +9,10 @@ export const ChartDiv = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     height: "50vh",
   },
+  // Hide amCharts watermark
+  '& .amcharts-chart-div a[aria-label*="amCharts"]': {
+    display: "none !important",
+  },
 }));
 
 export const ButtonContainer = styled(Box)(({ theme }) => ({
@@ -28,4 +32,5 @@ export const ButtonContainer = styled(Box)(({ theme }) => ({
 
 export const CountyName = styled(Typography)(({ theme }) => ({
   fontSize: "1.2rem",
+  color: theme.palette.secondary.main,
 }));
