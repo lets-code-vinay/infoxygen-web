@@ -8,6 +8,7 @@ import { AiPartnersContainer } from "./StyledAiPartner";
 import SectionHeader from "../SectionHeader";
 import theme from "../../theme";
 import { useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 
 // Add keyframes for backgroundShift if not already present
 if (typeof window !== "undefined" && window.document) {
@@ -58,11 +59,9 @@ const AiPartnerSliderContainer = ({
         showUnderline={true}
         showButton={false}
       />
-      <AiPartnerSlider isSlideSpeedFast={topSpeedFast} images={topImages} />
-      {/* <AiPartnerSlider
-        isSlideSpeedFast={bottomSpeedFast}
-        images={bottomImages}
-      /> */}
+      <Box sx={{ width: { xs: "100%", md: "80%", lg: "60%" }, mx: "auto" }}>
+        <AiPartnerSlider isSlideSpeedFast={topSpeedFast} images={topImages} />
+      </Box>
     </AiPartnersContainer>
   );
 };

@@ -23,10 +23,19 @@ const SectionHeader = ({
   const titleRef = useRef(null);
   const [titleWidth, setTitleWidth] = useState(null);
 
+  // Responsive font size using clamp
+  const responsiveFontSize = `clamp(1.3rem, 4vw, ${fontSize})`;
+
+  // Update title width on resize
   useLayoutEffect(() => {
-    if (titleRef.current) {
-      setTitleWidth(titleRef.current.offsetWidth);
+    function updateWidth() {
+      if (titleRef.current) {
+        setTitleWidth(titleRef.current.offsetWidth);
+      }
     }
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
   }, [titleWords, title, fontSize]);
 
   return (
@@ -44,24 +53,33 @@ const SectionHeader = ({
     >
       <Box sx={{ flex: 1, minWidth: 0 }}>
         {/* Title + AnimatedSliderBar in a box with auto width */}
-        <Box sx={{ width: "auto", display: "inline-block" }}>
+        <Box
+          sx={{
+            width: "auto",
+            display: "inline-block",
+            maxWidth: "100%",
+            pl: { xs: 2, md: 0 },
+          }}
+        >
           <Box
             ref={titleRef}
             sx={{
               fontWeight: 700,
-              fontSize: { xs: "1.5rem", md: fontSize },
+              fontSize: responsiveFontSize,
               textAlign: "left",
               color: "inherit",
               mb: 1,
               display: "inline-block",
               width: "auto",
+              maxWidth: "100vw",
+              overflowWrap: "break-word",
             }}
           >
             {titleWords ? (
               <ColorSwitchTitle
                 title={titleWords}
                 isNeonApplied={isNeonApplied}
-                fontSize={fontSize}
+                fontSize={responsiveFontSize}
               />
             ) : (
               title
@@ -69,23 +87,48 @@ const SectionHeader = ({
           </Box>
           {showUnderline && (
             <AnimatedSliderBar
-              sx={{ marginLeft: 0, width: titleWidth ? titleWidth : "100%" }}
+              sx={{
+                marginLeft: 0,
+                width: titleWidth
+                  ? Math.min(titleWidth, window.innerWidth * 0.9)
+                  : "100%",
+                maxWidth: "100%",
+                transition: "width 0.2s",
+              }}
             />
           )}
         </Box>
         {description && (
           <Description
-            sx={{ maxWidth: "90%", width: "90%", textAlign: "left", mx: 0 }}
+            component="div"
+            sx={{
+              maxWidth: { xs: "90vw", md: "90%" },
+              width: { xs: "90vw", md: "90%" },
+              textAlign: { xs: "start", md: "left" },
+              mx: { xs: "auto", md: 0 },
+            }}
           >
             {description}
+            {/* Button below description for small screens */}
+            {showButton && (
+              <Box
+                sx={{
+                  display: { xs: "flex", md: "none" },
+                  justifyContent: "center",
+                  mt: 2,
+                }}
+              >
+                <ActionButton {...buttonProps} />
+              </Box>
+            )}
           </Description>
         )}
       </Box>
-      {/* Always reserve space for the button area, even if showButton is false */}
+      {/* Button on the right for md+ screens */}
       <Box
         sx={{
           minWidth: 160,
-          display: "flex",
+          display: { xs: "none", md: "flex" },
           alignItems: "center",
           justifyContent: "flex-end",
         }}

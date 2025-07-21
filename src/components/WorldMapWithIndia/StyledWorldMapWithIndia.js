@@ -33,4 +33,7 @@ export const ButtonContainer = styled(Box)(({ theme }) => ({
 export const CountyName = styled(Typography)(({ theme }) => ({
   fontSize: "1.2rem",
   color: theme.palette.secondary.main,
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "0.9rem",
+  },
 }));

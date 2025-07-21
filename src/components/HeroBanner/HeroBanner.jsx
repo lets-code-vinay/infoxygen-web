@@ -474,7 +474,7 @@ const HeroBanner = () => {
                   "Web design",
                   "DIGITAL INNOVATION",
                 ]}
-                fontSize="3.2rem"
+                fontSize="clamp(1.5rem, 6vw, 3.2rem)"
                 isNeonApplied={true}
               />
             </Typography>

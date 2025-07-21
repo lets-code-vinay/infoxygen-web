@@ -12,7 +12,6 @@ const WhyChooseInfoxygenSection = () => {
       component="section"
       sx={{
         py: { xs: 6, md: 10 },
-        px: { xs: 1, sm: 2, md: 4 },
         background: theme.palette.darkBg,
       }}
     >
@@ -31,40 +30,40 @@ const WhyChooseInfoxygenSection = () => {
         fontSize="2.4rem"
       />
       <Box sx={{ width: { xs: "100%", md: "80%", lg: "60%" }, mx: "auto" }}>
-        <Grid
-          container
-          spacing={{ xs: 3, md: 6 }}
-          alignItems="center"
-          justifyContent="space-between"
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: { xs: 3, md: 6 },
+          }}
         >
           {/* Left Side */}
-          <Grid item xs={12} md={6}>
-            <Box
-              sx={{
-                textAlign: { xs: "center", md: "left" },
-                p: { xs: 0, md: 2 },
-              }}
-            >
-              {/* AnimatedStats: 3 cards, animated in */}
-              <AnimatedStats />
-            </Box>
-          </Grid>
+          <Box
+            sx={{
+              width: { xs: "100%", md: "50%" },
+              textAlign: { xs: "center", md: "left" },
+              p: { xs: 0, md: 2 },
+            }}
+          >
+            {/* AnimatedStats: 3 cards, animated in */}
+            <AnimatedStats />
+          </Box>
           {/* Right Side */}
-          <Grid item xs={12} md={6}>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                minHeight: { xs: 200, md: 320 },
-                width: "100%",
-                mt: { xs: 4, md: 0 },
-              }}
-            >
-              <Lock />
-            </Box>
-          </Grid>
-        </Grid>
+          <Box
+            sx={{
+              width: { xs: "100%", md: "50%" },
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: { xs: 200, md: 320 },
+              mt: { xs: 4, md: 0 },
+            }}
+          >
+            <Lock />
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

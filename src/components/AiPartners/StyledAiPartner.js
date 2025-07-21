@@ -143,8 +143,8 @@ export const SlidingTrack = styled(Box, {
 // Used in AIPartnersSlider.jsx as the container for each logo image
 export const ImageContainer = styled(Box)(({ theme }) => ({
   display: "flex",
-  width: "200px",
-  height: "80px",
+  width: "120px",
+  height: "48px",
   margin: "5px 15px",
   alignItems: "center",
   justifyContent: "center",
@@ -155,21 +155,21 @@ export const ImageContainer = styled(Box)(({ theme }) => ({
     transform: "scale(1.05)",
   },
   [theme.breakpoints.down("sm")]: {
-    width: "140px",
-    height: "50px",
+    width: "80px",
+    height: "32px",
   },
   [theme.breakpoints.up("md")]: {
-    width: "180px",
-    height: "70px",
+    width: "100px",
+    height: "40px",
   },
   [theme.breakpoints.up("lg")]: {
-    width: "200px",
-    height: "80px",
+    width: "120px",
+    height: "48px",
   },
 }));
 
 export const SliderImage = styled("img")(({ theme }) => ({
-  width: "200px",
+  width: "100px",
   height: "70%",
   cursor: "pointer",
   margin: "5px 10px",
