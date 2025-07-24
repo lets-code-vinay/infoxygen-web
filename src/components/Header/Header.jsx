@@ -38,7 +38,7 @@ const StyledAppBar = styled(AppBar)(({ theme, scrolled }) => ({
   "--Paper-overlay": "none !important",
 }));
 
-const StyledLogo = styled("img")(({ scrolled }) => ({
+const StyledLogo = styled("img")(({ scrolled, theme }) => ({
   height: "52px",
   width: "auto",
   transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -50,7 +50,10 @@ const StyledLogo = styled("img")(({ scrolled }) => ({
       transform: "scale(1)",
     },
     "25%": {
-      filter: "brightness(0) invert(1)",
+      filter:
+        theme.palette.mode === "light"
+          ? "invert(0) brightness(0)"
+          : "brightness(0) invert(1)",
       transform: "scale(1.01)",
     },
     "50%": {
@@ -58,7 +61,10 @@ const StyledLogo = styled("img")(({ scrolled }) => ({
       transform: "scale(1.02)",
     },
     "75%": {
-      filter: "brightness(0) invert(1)",
+      filter:
+        theme.palette.mode === "light"
+          ? "invert(0) brightness(0)"
+          : "brightness(0) invert(1)",
       transform: "scale(1.01)",
     },
   },

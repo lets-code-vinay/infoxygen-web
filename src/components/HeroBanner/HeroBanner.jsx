@@ -49,7 +49,7 @@ const FloatingElements = styled(Box)({
   pointerEvents: "none",
 });
 
-const FloatingCircle = styled("div")(({ delay, size, color }) => ({
+const FloatingCircle = styled("div")(({ delay, size, color, theme }) => ({
   position: "absolute",
   width: size,
   height: size,
@@ -58,7 +58,7 @@ const FloatingCircle = styled("div")(({ delay, size, color }) => ({
   opacity: 0.25,
   animation: `float 6s ease-in-out infinite`,
   animationDelay: `${delay}s`,
-  filter: "blur(0.5px)",
+  filter: theme.palette.mode === "light" ? "invert(1)" : "none",
   boxShadow: `0 0 30px ${color}60, 0 0 60px ${color}40`,
 }));
 
@@ -503,7 +503,10 @@ const HeroBanner = () => {
                 opacity: 0.9,
                 maxWidth: "600px",
                 lineHeight: 1.4,
-                color: "#e0e0e0",
+                color: (theme) =>
+                  theme.palette.mode === "light"
+                    ? theme.palette.accent.light
+                    : "#e0e0e0",
               }}
             >
               Amplify business impact with Infoxygen's specialized knowledge and
