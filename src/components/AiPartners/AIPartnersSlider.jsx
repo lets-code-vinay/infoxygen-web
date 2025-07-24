@@ -20,6 +20,7 @@ const AiPartnerSlider = ({
   images = [],
   className = "",
   style = {},
+  isDarkMode = false,
   ...props
 }) => {
   return (
@@ -31,6 +32,7 @@ const AiPartnerSlider = ({
               src={new URL(image, import.meta.url).href}
               alt={alt || `${name} logo`}
               loading="lazy"
+              isDarkMode={isDarkMode}
             />
           </ImageContainer>
         ))}

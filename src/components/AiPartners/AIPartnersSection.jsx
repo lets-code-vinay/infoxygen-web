@@ -58,7 +58,7 @@ const AiPartnerSliderContainer = ({
         showUnderline={true}
         showButton={false}
       />
-      <Box sx={{ width: { xs: "100%", md: "80%", lg: "60%" }, mx: "auto" }}>
+      <Box>
         <AiPartnerSlider isSlideSpeedFast={topSpeedFast} images={topImages} />
       </Box>
     </AiPartnersContainer>

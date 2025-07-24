@@ -2,4 +2,13 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  --Paper-overlay: none !important;
+}
+
+header.MuiAppBar-root {
+  --Paper-overlay: none !important;
+}
+
+.MuiPaper-root {
+  --Paper-overlay: none !important;
 }

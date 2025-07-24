@@ -168,13 +168,16 @@ export const ImageContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const SliderImage = styled("img")(({ theme }) => ({
+export const SliderImage = styled("img", {
+  shouldForwardProp: (prop) => prop !== "isDarkMode",
+})(({ theme, isDarkMode }) => ({
   width: "100px",
   height: "70%",
   cursor: "pointer",
   margin: "5px 10px",
-  filter: "grayscale(100%)",
-  opacity: 0.2,
+  // Use filter to approximate #388e3c (theme.palette.secondary.main)
+  filter: `grayscale(100%) sepia(100%) hue-rotate(70deg) saturate(600%) brightness(0.7)`,
+  opacity: 0.8,
   transition: "all 0.3s ease",
   objectFit: "contain",
   objectPosition: "center",

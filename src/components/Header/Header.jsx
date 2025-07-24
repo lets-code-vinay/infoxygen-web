@@ -35,6 +35,7 @@ const StyledAppBar = styled(AppBar)(({ theme, scrolled }) => ({
       opacity: 1,
     },
   },
+  "--Paper-overlay": "none !important",
 }));
 
 const StyledLogo = styled("img")(({ scrolled }) => ({
@@ -68,6 +69,7 @@ const StyledLogo = styled("img")(({ scrolled }) => ({
  * @description Renders the main header with logo, navigation menus, and mobile drawer
  * @returns {JSX.Element} The header component with navigation and mobile menu
  */
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -192,7 +194,23 @@ const Header = () => {
                     isDarkMode ? "Change to Light Mode" : "Change to Dark Mode"
                   }
                 >
-                  {isDarkMode ? <DarkMode /> : <LightMode />}
+                  {isDarkMode ? (
+                    <DarkMode
+                      sx={{
+                        color: isScrolled
+                          ? theme.palette.primary.main
+                          : theme.palette.secondary.main,
+                      }}
+                    />
+                  ) : (
+                    <LightMode
+                      sx={{
+                        color: isScrolled
+                          ? theme.palette.primary.main
+                          : theme.palette.secondary.main,
+                      }}
+                    />
+                  )}
                 </IconButton>
               </Tooltip>
               {isMobile && (
