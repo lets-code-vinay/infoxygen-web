@@ -86,19 +86,29 @@ const ContentContainer = styled(Box)(({ theme }) => ({
   px: 3,
 }));
 
-const AnimatedTitle = styled(Typography)({
-  background: "linear-gradient(45deg, #fff, #f0f0f0, #fff)",
+const AnimatedTitle = styled(Typography)(({ theme }) => ({
+  background:
+    theme.palette.mode === "light"
+      ? theme.palette.primary.main
+      : "linear-gradient(45deg, #fff, #f0f0f0, #fff)",
   backgroundSize: "200% 200%",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",
-  animation: "shimmer 3s ease-in-out infinite",
-  textShadow: "0 0 30px rgba(255, 255, 255, 0.5)",
-});
+  animation:
+    theme.palette.mode === "light"
+      ? undefined
+      : "shimmer 3s ease-in-out infinite",
+  textShadow:
+    theme.palette.mode === "light"
+      ? "none"
+      : "0 0 30px rgba(255, 255, 255, 0.5)",
+}));
 
 const HeroBanner = () => {
   const animationRef = useRef(null);
   const [circlePositions, setCirclePositions] = useState([]);
+  const theme = useTheme();
 
   useEffect(() => {
     // Generate random positions for floating circles
@@ -450,6 +460,10 @@ const HeroBanner = () => {
                 mb: 3,
                 letterSpacing: "-0.02em",
                 whiteSpace: "nowrap",
+                color: (theme) =>
+                  theme.palette.mode === "light"
+                    ? `${theme.palette.primary.main} !important`
+                    : undefined,
               }}
             >
               One-stop access to

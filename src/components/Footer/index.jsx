@@ -2,7 +2,10 @@ import React from "react";
 import { Box, Container, Typography, styled, useTheme } from "@mui/material";
 
 const StyledFooter = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.background.default,
+  background:
+    theme.palette.mode === "light"
+      ? theme.palette.background.lightBg
+      : theme.palette.background.default,
   color: theme.palette.mode === "light" ? theme.palette.primary.main : "white",
   padding: theme.spacing(3, 0),
   boxShadow: "inset 0 4px 8px rgba(0, 0, 0, 0.2)",

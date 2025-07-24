@@ -51,9 +51,12 @@ const DesktopMenu = ({
       <Button
         variant="text"
         sx={{
-          color: scrolled
-            ? theme.palette.primary.main
-            : theme.palette.accent.light,
+          color:
+            theme.palette.mode === "light"
+              ? theme.palette.primary.main
+              : scrolled
+              ? theme.palette.primary.main
+              : theme.palette.accent.light,
           fontWeight: 500,
           position: "relative",
           transition: "color 0.3s ease",
@@ -84,9 +87,12 @@ const DesktopMenu = ({
         onClick={handleServicesClick}
         endIcon={Boolean(servicesAnchorEl) ? <ExpandLess /> : <ExpandMore />}
         sx={{
-          color: scrolled
-            ? theme.palette.primary.main
-            : theme.palette.accent.light,
+          color:
+            theme.palette.mode === "light"
+              ? theme.palette.primary.main
+              : scrolled
+              ? theme.palette.primary.main
+              : theme.palette.accent.light,
           fontWeight: 500,
           position: "relative",
           transition: "color 0.3s ease",
@@ -117,9 +123,12 @@ const DesktopMenu = ({
         onClick={handleIndustriesClick}
         endIcon={Boolean(industriesAnchorEl) ? <ExpandLess /> : <ExpandMore />}
         sx={{
-          color: scrolled
-            ? theme.palette.primary.main
-            : theme.palette.accent.light,
+          color:
+            theme.palette.mode === "light"
+              ? theme.palette.primary.main
+              : scrolled
+              ? theme.palette.primary.main
+              : theme.palette.accent.light,
           fontWeight: 500,
           position: "relative",
           transition: "color 0.3s ease",
@@ -148,9 +157,12 @@ const DesktopMenu = ({
       <Button
         variant="text"
         sx={{
-          color: scrolled
-            ? theme.palette.primary.main
-            : theme.palette.accent.light,
+          color:
+            theme.palette.mode === "light"
+              ? theme.palette.primary.main
+              : scrolled
+              ? theme.palette.primary.main
+              : theme.palette.accent.light,
           fontWeight: 500,
           position: "relative",
           transition: "color 0.3s ease",
@@ -179,9 +191,12 @@ const DesktopMenu = ({
       <Button
         variant="text"
         sx={{
-          color: scrolled
-            ? theme.palette.primary.main
-            : theme.palette.accent.light,
+          color:
+            theme.palette.mode === "light"
+              ? theme.palette.primary.main
+              : scrolled
+              ? theme.palette.primary.main
+              : theme.palette.accent.light,
           fontWeight: 500,
           position: "relative",
           transition: "color 0.3s ease",
@@ -211,7 +226,13 @@ const DesktopMenu = ({
         text="LET'S CONNECT"
         direction="left"
         radius={0}
-        colorVariant={scrolled ? "primary" : "accent"}
+        colorVariant={
+          theme.palette.mode === "light"
+            ? "primary"
+            : scrolled
+            ? "primary"
+            : "accent"
+        }
       />
     </Box>
   );
