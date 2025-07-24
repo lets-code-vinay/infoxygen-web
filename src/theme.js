@@ -159,6 +159,8 @@ export const lightTheme = createTheme({
     background: {
       default: "#ffffff", // white background
       paper: "#ffffff",
+      lightBg:
+        "linear-gradient(180deg, #f8feee 0%, #f8feee 0%, #f8feee 0%, #fafef1 20%, #fbfdf2 20%, #fafdf1 20%, #fcfcf4 40%, #fcfcf4 40%, #fafdf1 40%, #fefcf7 60%, #fdfcf7 60%, #fefbf7 60%, #fffbf9 80%, #fffbf9 80%, #fffbf9 80%, #f8feee 100%, #f8feee 100%, #f8feee 100%)",
     },
     text: {
       primary: "#222222",

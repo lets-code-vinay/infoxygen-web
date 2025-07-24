@@ -5,7 +5,10 @@ export const SectionContainer = styled(Box)(({ theme }) => ({
   position: "relative",
   padding: theme.spacing(4, 0),
   overflow: "hidden",
-  background: theme.palette.background.default,
+  background:
+    theme.palette.mode === "light"
+      ? theme.palette.background.lightBg
+      : theme.palette.background.default,
   display: "flex",
   flexDirection: "column",
   alignItems: "center", // vertical align center

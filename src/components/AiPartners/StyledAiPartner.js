@@ -4,8 +4,11 @@ import { Box, Typography, styled } from "@mui/material";
 export const AiPartnersContainer = styled(Box)(({ theme }) => ({
   position: "relative",
   padding: theme.spacing(2, 0),
-  marginBottom: theme.spacing(1),
   overflow: "hidden",
+  background:
+    theme.palette.mode === "light"
+      ? theme.palette.background.lightBg
+      : theme.palette.background.default,
   [theme.breakpoints.down("sm")]: {
     padding: theme.spacing(3, 0),
   },

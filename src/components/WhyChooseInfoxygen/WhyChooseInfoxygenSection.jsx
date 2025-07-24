@@ -12,7 +12,10 @@ const WhyChooseInfoxygenSection = () => {
       component="section"
       sx={{
         py: { xs: 6, md: 10 },
-        background: theme.palette.darkBg,
+        background:
+          theme.palette.mode === "light"
+            ? theme.palette.background.lightBg
+            : theme.palette.darkBg,
       }}
     >
       <SectionHeader

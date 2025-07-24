@@ -40,7 +40,10 @@ const SiteMap = () => {
       sx={{
         width: "100%",
         minHeight: 400,
-        background: `${theme.palette.darkBg}`,
+        background:
+          theme.palette.mode === "light"
+            ? theme.palette.background.lightBg
+            : theme.palette.darkBg,
         position: "relative",
         py: 6,
         overflow: "hidden",
