@@ -49,7 +49,7 @@ const FloatingElements = styled(Box)({
   pointerEvents: "none",
 });
 
-const FloatingCircle = styled("div")(({ delay, size, color }) => ({
+const FloatingCircle = styled("div")(({ delay, size, color, theme }) => ({
   position: "absolute",
   width: size,
   height: size,
@@ -58,7 +58,7 @@ const FloatingCircle = styled("div")(({ delay, size, color }) => ({
   opacity: 0.25,
   animation: `float 6s ease-in-out infinite`,
   animationDelay: `${delay}s`,
-  filter: "blur(0.5px)",
+  filter: theme.palette.mode === "light" ? "invert(1)" : "none",
   boxShadow: `0 0 30px ${color}60, 0 0 60px ${color}40`,
 }));
 
@@ -86,19 +86,29 @@ const ContentContainer = styled(Box)(({ theme }) => ({
   px: 3,
 }));
 
-const AnimatedTitle = styled(Typography)({
-  background: "linear-gradient(45deg, #fff, #f0f0f0, #fff)",
+const AnimatedTitle = styled(Typography)(({ theme }) => ({
+  background:
+    theme.palette.mode === "light"
+      ? theme.palette.primary.main
+      : "linear-gradient(45deg, #fff, #f0f0f0, #fff)",
   backgroundSize: "200% 200%",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",
-  animation: "shimmer 3s ease-in-out infinite",
-  textShadow: "0 0 30px rgba(255, 255, 255, 0.5)",
-});
+  animation:
+    theme.palette.mode === "light"
+      ? undefined
+      : "shimmer 3s ease-in-out infinite",
+  textShadow:
+    theme.palette.mode === "light"
+      ? "none"
+      : "0 0 30px rgba(255, 255, 255, 0.5)",
+}));
 
 const HeroBanner = () => {
   const animationRef = useRef(null);
   const [circlePositions, setCirclePositions] = useState([]);
+  const theme = useTheme();
 
   useEffect(() => {
     // Generate random positions for floating circles
@@ -450,6 +460,10 @@ const HeroBanner = () => {
                 mb: 3,
                 letterSpacing: "-0.02em",
                 whiteSpace: "nowrap",
+                color: (theme) =>
+                  theme.palette.mode === "light"
+                    ? `${theme.palette.primary.main} !important`
+                    : undefined,
               }}
             >
               One-stop access to
@@ -474,7 +488,7 @@ const HeroBanner = () => {
                   "Web design",
                   "DIGITAL INNOVATION",
                 ]}
-                fontSize="3.2rem"
+                fontSize="clamp(1.5rem, 6vw, 3.2rem)"
                 isNeonApplied={true}
               />
             </Typography>
@@ -489,7 +503,10 @@ const HeroBanner = () => {
                 opacity: 0.9,
                 maxWidth: "600px",
                 lineHeight: 1.4,
-                color: "#e0e0e0",
+                color: (theme) =>
+                  theme.palette.mode === "light"
+                    ? theme.palette.accent.light
+                    : "#e0e0e0",
               }}
             >
               Amplify business impact with Infoxygen's specialized knowledge and

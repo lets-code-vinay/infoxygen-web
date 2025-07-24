@@ -13,7 +13,7 @@ import {
   ButtonContainer,
   CountyName,
 } from "./StyledWorldMapWithIndia";
-import theme from "../../theme";
+import { darkTheme } from "../../theme";
 
 am4core.useTheme(am4themes_animated);
 am4core.options.disableHoverOnTransform = "touch";
@@ -42,7 +42,7 @@ class WorldMapWithIndia extends Component {
     polygonSeries.mapPolygons.template.tooltipText = "{name}";
 
     let hoverState = polygonSeries.mapPolygons.template.states.create("hover");
-    hoverState.properties.fill = am4core.color(theme.palette.primary.main);
+    hoverState.properties.fill = am4core.color(darkTheme.palette.primary.main);
     hoverState.properties.stroke = am4core.color("#000");
     hoverState.properties.strokeWidth = 1;
 
@@ -56,7 +56,9 @@ class WorldMapWithIndia extends Component {
     chart.smallMap.align = "left";
     chart.smallMap.valign = "bottom";
     // Rectangle (viewport) color (primary)
-    chart.smallMap.rectangle.stroke = am4core.color(theme.palette.primary.main);
+    chart.smallMap.rectangle.stroke = am4core.color(
+      darkTheme.palette.primary.main
+    );
     chart.smallMap.rectangle.strokeWidth = 2;
 
     /**

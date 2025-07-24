@@ -7,6 +7,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { useTheme } from "@mui/material/styles";
 import sitemapImg from "../../assets/images/sitemap.png";
+import sitemapLightImg from "../../assets/images/sitemap-light-mode.png";
 
 // Dummy data arrays (replace with your real data later)
 const menuLinks = ["Home", "About", "Careers", "Contact"];
@@ -40,13 +41,16 @@ const SiteMap = () => {
       sx={{
         width: "100%",
         minHeight: 400,
-        background: `${theme.palette.darkBg}`,
+        background:
+          theme.palette.mode === "light"
+            ? theme.palette.background.lightBg
+            : theme.palette.darkBg,
         position: "relative",
         py: 6,
         overflow: "hidden",
       }}
     >
-      {/* Background image, right aligned */}
+      {/* Background image, right aligned   */}
       <Box
         sx={{
           position: "absolute",
@@ -54,7 +58,9 @@ const SiteMap = () => {
           right: 0,
           bottom: 0,
           width: { xs: "60%", md: "50%" },
-          background: `url(${sitemapImg}) right center / cover no-repeat`,
+          background: `url(${
+            theme.palette.mode === "light" ? sitemapLightImg : sitemapImg
+          }) right center / cover no-repeat`,
           opacity: 0.18,
           zIndex: 1,
           pointerEvents: "none",
@@ -79,7 +85,14 @@ const SiteMap = () => {
             <Box sx={{ width: "100%" }}>
               <Typography
                 variant="h6"
-                sx={{ fontWeight: 700, mb: 2, color: "#fff" }}
+                sx={{
+                  fontWeight: 700,
+                  mb: 2,
+                  color:
+                    theme.palette.mode === "light"
+                      ? theme.palette.primary.main
+                      : "#fff",
+                }}
               >
                 {section.title}
               </Typography>
@@ -92,7 +105,13 @@ const SiteMap = () => {
                   >
                     <ListItemText
                       primary={item}
-                      primaryTypographyProps={{ fontSize: 15, color: "#fff" }}
+                      primaryTypographyProps={{
+                        fontSize: 15,
+                        color:
+                          theme.palette.mode === "light"
+                            ? theme.palette.primary.main
+                            : "#fff",
+                      }}
                     />
                   </ListItem>
                 ))}

@@ -5,7 +5,10 @@ export const SectionContainer = styled(Box)(({ theme }) => ({
   position: "relative",
   padding: theme.spacing(4, 0),
   overflow: "hidden",
-  background: theme.palette.background.default,
+  background:
+    theme.palette.mode === "light"
+      ? theme.palette.background.lightBg
+      : theme.palette.background.default,
   display: "flex",
   flexDirection: "column",
   alignItems: "center", // vertical align center
@@ -93,8 +96,8 @@ export const SlidingTrack = styled(Box)(({ theme }) => ({
 }));
 
 export const IndustryCard = styled(Box)(({ theme }) => ({
-  width: 220,
-  height: 80,
+  width: 190,
+  height: 60,
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -102,7 +105,7 @@ export const IndustryCard = styled(Box)(({ theme }) => ({
   borderRadius: 5,
   background: theme.palette.background.paper,
   margin: theme.spacing(0, 2),
-  padding: theme.spacing(2),
+  padding: theme.spacing(2.5),
   boxSizing: "border-box",
   transition: "box-shadow 0.3s",
   cursor: "pointer",
@@ -142,20 +145,28 @@ export const IndustryCard = styled(Box)(({ theme }) => ({
   "&:not(:hover) > *": {
     transition: "color 0.2s cubic-bezier(0.4,0,0.2,1) 1s",
   },
+  [theme.breakpoints.down("sm")]: {
+    width: "128px",
+    height: "45px",
+    padding: "5px 1px 6px 8px",
+  },
 }));
 
 export const IndustryTitle = styled(Typography)(({ theme }) => ({
   fontWeight: 600,
-  fontSize: "1.1rem",
+  fontSize: "1.05rem", // fit for 190px card
   color: theme.palette.text.primary,
   flex: 1,
   zIndex: 2,
   textAlign: "start",
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "0.85rem", // fit for 150px card
+  },
 }));
 
 export const IconWrapper = styled(Box)(({ theme }) => ({
-  width: 50,
-  height: 50,
+  width: 40,
+  height: 40,
   borderRadius: "10%",
   //   border: `1px solid ${theme.palette.primary.main}`,
   display: "flex",
@@ -166,10 +177,18 @@ export const IconWrapper = styled(Box)(({ theme }) => ({
   zIndex: 2,
   transition: "background 0.3s",
   // On hover, parent IndustryCard changes bg, but this stays the same
+  [theme.breakpoints.down("sm")]: {
+    width: 40,
+    height: 40,
+  },
 }));
 
-export const IconImage = styled("img")({
-  width: 40,
-  height: 40,
+export const IconImage = styled("img")(({ theme }) => ({
+  width: 30,
+  height: 30,
+  [theme.breakpoints.down("sm")]: {
+    width: 24, // decreased from 30
+    height: 24, // decreased from 30
+  },
   //   objectFit: 'contain',
-});
+}));

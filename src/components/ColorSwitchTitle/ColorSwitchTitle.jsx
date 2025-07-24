@@ -44,7 +44,12 @@ const ColorSwitchTitle = ({
         <span
           key={word + idx}
           style={{
-            color: getColor(idx),
+            color:
+              typeof window !== "undefined" &&
+              window.innerWidth <= 600 &&
+              (word.toLowerCase() === "sackel" || word.toLowerCase() === "sack")
+                ? theme.palette.primary.main
+                : getColor(idx),
             fontWeight: 700,
             fontSize: fontSize,
             marginRight: idx < words.length - 1 ? 8 : 0,

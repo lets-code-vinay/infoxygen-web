@@ -15,12 +15,14 @@ const Lock = () => {
       id="circle"
       sx={{
         position: "relative",
-        width: size,
-        height: size,
+        width: { xs: "100vw", sm: 350, md: size },
+        maxWidth: "100vw",
+        height: { xs: 300, sm: 350, md: size },
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         overflow: "visible",
+        mx: "auto",
       }}
     >
       <style>{`
@@ -35,10 +37,10 @@ const Lock = () => {
         xmlnsXlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        width={size}
-        height={size}
+        width="100%"
+        height="100%"
         viewBox={`0 0 ${size} ${size}`}
-        style={{ objectFit: "cover", position: "relative" }}
+        style={{ objectFit: "cover", position: "relative", maxWidth: "100vw" }}
       >
         <defs>
           <path
@@ -88,26 +90,30 @@ const Lock = () => {
           top: "75%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 419,
-          height: 235,
+          width: { xs: "80%", sm: 300, md: 419 },
+          height: { xs: "60%", sm: 180, md: 235 },
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           overflow: "hidden",
           background: "#fff",
           borderRadius: "43px",
+          maxWidth: 419,
+          maxHeight: 235,
         }}
       >
         <img
           loading="lazy"
-          width={419}
-          height={235}
+          width="100%"
+          height="100%"
           decoding="async"
           style={{
             color: "transparent",
             objectFit: "cover",
             width: "100%",
             height: "100%",
+            maxWidth: "100%",
+            maxHeight: "100%",
           }}
           src={Happy_Client}
           alt="Lock Center"

@@ -4,7 +4,10 @@ import Grid from "@mui/material/Grid";
 
 export const MainBody = styled(Box)(({ theme }) => ({
   width: "100%",
-  background: theme.palette.darkBg,
+  background:
+    theme.palette.mode === "light"
+      ? theme.palette.background.lightBg
+      : theme.palette.darkBg,
   color: "white",
   position: "relative",
   paddingTop: "4%",

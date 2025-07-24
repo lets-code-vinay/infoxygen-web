@@ -4,8 +4,11 @@ import { Box, Typography, styled } from "@mui/material";
 export const AiPartnersContainer = styled(Box)(({ theme }) => ({
   position: "relative",
   padding: theme.spacing(2, 0),
-  marginBottom: theme.spacing(1),
   overflow: "hidden",
+  background:
+    theme.palette.mode === "light"
+      ? theme.palette.background.lightBg
+      : theme.palette.background.default,
   [theme.breakpoints.down("sm")]: {
     padding: theme.spacing(3, 0),
   },
@@ -143,8 +146,8 @@ export const SlidingTrack = styled(Box, {
 // Used in AIPartnersSlider.jsx as the container for each logo image
 export const ImageContainer = styled(Box)(({ theme }) => ({
   display: "flex",
-  width: "200px",
-  height: "80px",
+  width: "120px",
+  height: "48px",
   margin: "5px 15px",
   alignItems: "center",
   justifyContent: "center",
@@ -155,26 +158,29 @@ export const ImageContainer = styled(Box)(({ theme }) => ({
     transform: "scale(1.05)",
   },
   [theme.breakpoints.down("sm")]: {
-    width: "140px",
-    height: "50px",
+    width: "80px",
+    height: "32px",
   },
   [theme.breakpoints.up("md")]: {
-    width: "180px",
-    height: "70px",
+    width: "100px",
+    height: "40px",
   },
   [theme.breakpoints.up("lg")]: {
-    width: "200px",
-    height: "80px",
+    width: "120px",
+    height: "48px",
   },
 }));
 
-export const SliderImage = styled("img")(({ theme }) => ({
-  width: "200px",
+export const SliderImage = styled("img", {
+  shouldForwardProp: (prop) => prop !== "isDarkMode",
+})(({ theme, isDarkMode }) => ({
+  width: "100px",
   height: "70%",
   cursor: "pointer",
   margin: "5px 10px",
-  filter: "grayscale(100%)",
-  opacity: 0.2,
+  // Use filter to approximate #388e3c (theme.palette.secondary.main)
+  filter: `grayscale(100%) sepia(100%) hue-rotate(70deg) saturate(600%) brightness(0.7)`,
+  opacity: 0.8,
   transition: "all 0.3s ease",
   objectFit: "contain",
   objectPosition: "center",
