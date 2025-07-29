@@ -1,7 +1,7 @@
 import React from "react";
 import { useTheme } from "@mui/material";
 import { CORE_INDUSTRIES } from "../../configs/coreIndustries";
-import SectionHeader from "../SectionHeader";
+import SectionHeader from "../SectionHeader/SectionHeader";
 import {
   SectionContainer,
   SliderContainer,
