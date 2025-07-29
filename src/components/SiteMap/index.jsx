@@ -48,6 +48,7 @@ const SiteMap = () => {
         position: "relative",
         py: 6,
         overflow: "hidden",
+        px: { xs: 2, md: 0 },
       }}
     >
       {/* Background image, right aligned   */}
@@ -55,12 +56,21 @@ const SiteMap = () => {
         sx={{
           position: "absolute",
           top: 0,
-          right: 0,
+          right: { xs: "auto", md: 0 },
+          left: { xs: 0, md: "auto" },
           bottom: 0,
-          width: { xs: "60%", md: "50%" },
-          background: `url(${
-            theme.palette.mode === "light" ? sitemapLightImg : sitemapImg
-          }) right center / cover no-repeat`,
+          width: { xs: "120%", md: "50%" },
+          height: "100%",
+          background:
+            theme.palette.mode === "light"
+              ? {
+                  xs: `url(${sitemapLightImg}) right center / cover no-repeat`,
+                  md: `url(${sitemapLightImg}) right center / cover no-repeat`,
+                }
+              : {
+                  xs: `url(${sitemapImg}) right center / cover no-repeat`,
+                  md: `url(${sitemapImg}) right center / cover no-repeat`,
+                },
           opacity: 0.18,
           zIndex: 1,
           pointerEvents: "none",

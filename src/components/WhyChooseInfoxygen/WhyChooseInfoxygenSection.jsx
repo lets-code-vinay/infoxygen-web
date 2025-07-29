@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Grid } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import SectionHeader from "../SectionHeader";
+import SectionHeader from "../SectionHeader/SectionHeader";
 import AnimatedStats from "./AnimatedStats";
 import Lock from "./Lock";
 

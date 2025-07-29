@@ -5,7 +5,7 @@ import {
   INFINITY_SLIDER_CONTENTS_BOTTOM,
 } from "../../configs/AIPartners";
 import { AiPartnersContainer } from "./StyledAiPartner";
-import SectionHeader from "../SectionHeader";
+import SectionHeader from "../SectionHeader/SectionHeader";
 import { useTheme } from "@mui/material";
 import { Box } from "@mui/material";
 

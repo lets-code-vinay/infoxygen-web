@@ -1,11 +1,11 @@
 import React, { useState, useRef, useLayoutEffect } from "react";
 import { Box } from "@mui/material";
-import ActionButton from "./CustomButtons/ActionButton/ActionButton";
+import ActionButton from "../CustomButtons/ActionButton/ActionButton";
 import {
   AnimatedSliderBar,
   Description,
-} from "./CoreIndustries/StyledCoreIndustries";
-import ColorSwitchTitle from "./ColorSwitchTitle/ColorSwitchTitle";
+} from "../CoreIndustries/StyledCoreIndustries";
+import ColorSwitchTitle from "../ColorSwitchTitle/ColorSwitchTitle";
 import { useTheme } from "@mui/material";
 
 const SectionHeader = ({
@@ -41,7 +41,7 @@ const SectionHeader = ({
   return (
     <Box
       sx={{
-        width: "60%",
+        width: { xs: "90%", md: "60%" },
         display: "flex",
         flexDirection: "row",
         alignItems: "flex-start",
