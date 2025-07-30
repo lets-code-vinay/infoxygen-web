@@ -3,6 +3,14 @@ body {
   padding: 0;
   box-sizing: border-box;
   --Paper-overlay: none !important;
+  /* Ensure smooth scrolling and prevent unwanted scroll behavior */
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+html {
+  /* Prevent scroll restoration */
+  scroll-behavior: auto;
 }
 
 header.MuiAppBar-root {
@@ -11,4 +19,10 @@ header.MuiAppBar-root {
 
 .MuiPaper-root {
   --Paper-overlay: none !important;
+}
+
+/* Ensure the page starts at the top */
+#root {
+  scroll-margin-top: 0;
+  scroll-padding-top: 0;
 }

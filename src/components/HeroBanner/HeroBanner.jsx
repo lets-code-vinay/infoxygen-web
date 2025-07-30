@@ -18,6 +18,7 @@ const HeroContainer = styled(Box)(({ theme }) => ({
   paddingTop: "64px", // Add padding to account for header height
   marginBottom: 0, // Remove any bottom margin
   borderBottom: "none", // Remove any border
+  scrollMarginTop: "0", // Ensure no scroll margin
   [theme.breakpoints.down("sm")]: {
     marginTop: "-56px",
     paddingTop: "56px",
@@ -124,6 +125,13 @@ const HeroBanner = () => {
     };
 
     setCirclePositions(generateRandomPositions());
+  }, []);
+
+  // Ensure the page stays at the top when component mounts
+  useEffect(() => {
+    if (window.scrollY > 0) {
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   useEffect(() => {
