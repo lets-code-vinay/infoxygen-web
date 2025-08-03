@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import AppRoutes from "./Routes";
+import FloatingWhatsApp from "./components/FloatingWhatsApp/FloatingWhatsApp";
 
 const App = () => {
   useEffect(() => {
@@ -17,7 +18,15 @@ const App = () => {
     }
   }, []);
 
-  return <AppRoutes />;
+  return (
+    <>
+      <AppRoutes />
+      <FloatingWhatsApp
+        phoneNumber="+917307805030"
+        message="Hello! I'm interested in your services. Can you help me?"
+      />
+    </>
+  );
 };
 
 export default App;
