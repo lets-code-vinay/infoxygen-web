@@ -58,7 +58,7 @@ const SectionHeader = ({
             width: "auto",
             display: "inline-block",
             maxWidth: "100%",
-            pl: { xs: 2, md: 0 },
+            pl: { xs: 0, md: 0 },
           }}
         >
           <Box
