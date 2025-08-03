@@ -1,3 +1,9 @@
+@import url("./assets/fonts/montserrat.css");
+
+* {
+  font-family: "Montserrat", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
