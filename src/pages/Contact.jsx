@@ -16,6 +16,7 @@ import { Email, Phone, LocationOn, Send } from "@mui/icons-material";
 import emailjs from "emailjs-com";
 import { useTheme } from "@mui/material/styles";
 import Notification from "../components/Notification/Notification";
+import AnimatedCircles from "../components/AnimatedCircles/AnimatedCircles";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -139,9 +140,13 @@ const Contact = () => {
             ? theme.palette.background.lightBg
             : theme.palette.darkBg,
         minHeight: "100vh",
+        position: "relative",
       }}
     >
-      <Container maxWidth="lg">
+      {/* Animated Circles Background */}
+      <AnimatedCircles count={8} minSize={30} maxSize={80} zIndex={0} />
+
+      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
         <Typography variant="h2" component="h1" gutterBottom align="center">
           Contact Us
         </Typography>
@@ -161,13 +166,15 @@ const Contact = () => {
             background:
               theme.palette.mode === "light"
                 ? "rgba(255, 255, 255, 0.2)"
-                : "rgba(24, 18, 43, 0.8)",
+                : "rgba(24, 18, 43, 0.2)",
             backdropFilter: "blur(10px)",
             border: `1px solid ${
               theme.palette.mode === "light"
                 ? "rgba(0,0,0,0.1)"
                 : "rgba(255,255,255,0.1)"
             }`,
+            position: "relative",
+            zIndex: 3,
           }}
         >
           <Box
