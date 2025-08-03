@@ -1,5 +1,6 @@
 import React from "react";
 import { useTheme } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { CORE_INDUSTRIES } from "../../configs/coreIndustries";
 import SectionHeader from "../SectionHeader/SectionHeader";
 import {
@@ -19,7 +20,12 @@ function getSlidingIndustries() {
 
 const CoreIndustriesSection = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const industries = getSlidingIndustries();
+
+  const handleConnectWithExpert = () => {
+    navigate("/contact");
+  };
 
   return (
     <SectionContainer>
@@ -33,6 +39,7 @@ const CoreIndustriesSection = () => {
           direction: "left",
           radius: 0,
           colorVariant: "primary",
+          onClick: handleConnectWithExpert,
         }}
       />
 

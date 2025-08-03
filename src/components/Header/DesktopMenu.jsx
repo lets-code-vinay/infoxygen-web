@@ -10,7 +10,7 @@ import {
   styled,
 } from "@mui/material";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SERVICES_ITEMS, INDUSTRIES_ITEMS } from "./constants";
 import {
   isServiceAvailable,
@@ -49,6 +49,12 @@ const DesktopMenu = ({
   handleIndustriesClick,
   handleClose,
 }) => {
+  const navigate = useNavigate();
+
+  const handleLetsConnect = () => {
+    navigate("/contact");
+  };
+
   /**
    * Renders the main desktop navigation menu
    * @description Creates navigation buttons with hover animations and dropdown triggers
@@ -253,6 +259,7 @@ const DesktopMenu = ({
             ? "primary"
             : "accent"
         }
+        onClick={handleLetsConnect}
       />
     </Box>
   );

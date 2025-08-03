@@ -12,7 +12,7 @@ import {
   styled,
 } from "@mui/material";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SERVICES_ITEMS, INDUSTRIES_ITEMS } from "./constants";
 import {
   isServiceAvailable,
@@ -54,6 +54,13 @@ const MobileMenu = ({
   handleMobileServicesToggle,
   handleMobileIndustriesToggle,
 }) => {
+  const navigate = useNavigate();
+
+  const handleLetsConnect = () => {
+    navigate("/contact");
+    handleDrawerToggle(); // Close the mobile menu
+  };
+
   /**
    * Renders the mobile navigation menu content
    * @description Creates the list of navigation items with expandable sections
@@ -201,6 +208,7 @@ const MobileMenu = ({
           direction="right"
           radius={10}
           fullWidth={true}
+          onClick={handleLetsConnect}
         />
       </Box>
     </List>
