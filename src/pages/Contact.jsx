@@ -17,6 +17,9 @@ import emailjs from "emailjs-com";
 import { useTheme } from "@mui/material/styles";
 import Notification from "../components/Notification/Notification";
 import AnimatedCircles from "../components/AnimatedCircles/AnimatedCircles";
+import SectionHeader from "../components/SectionHeader/SectionHeader";
+import ActionButton from "../components/CustomButtons/ActionButton/ActionButton";
+import ColorSwitchTitle from "../components/ColorSwitchTitle/ColorSwitchTitle";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -146,20 +149,16 @@ const Contact = () => {
       {/* Animated Circles Background */}
       <AnimatedCircles count={8} minSize={30} maxSize={80} zIndex={0} />
 
+      <SectionHeader
+        titleWords={"Contact Us"}
+        description={
+          "Get in touch with our team for any inquiries or collaboration"
+        }
+        showUnderline={true}
+        showButton={false}
+        fontSize={{ xs: "1.8rem", sm: "1.8rem", md: "2.2rem" }}
+      />
       <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
-        <Typography variant="h2" component="h1" gutterBottom align="center">
-          Contact Us
-        </Typography>
-        <Typography
-          variant="h5"
-          color="text.secondary"
-          paragraph
-          align="center"
-          sx={{ mb: 6 }}
-        >
-          Get in touch with our team for any inquiries or collaboration
-        </Typography>
-
         <Paper
           sx={{
             p: 4,
@@ -219,9 +218,14 @@ const Contact = () => {
                 flexDirection: "column",
               }}
             >
-              <Typography variant="h4" gutterBottom>
+              {/* <Typography variant="h4" gutterBottom>
                 Send us a Message
-              </Typography>
+              </Typography> */}
+              <ColorSwitchTitle
+                title={"Send us a Message"}
+                isNeonApplied={false}
+                fontSize={"1.8rem"}
+              />
               <Typography variant="body1" color="text.secondary" paragraph>
                 Fill out the form below and we'll get back to you as soon as
                 possible.
@@ -229,7 +233,7 @@ const Contact = () => {
 
               <Box component="form" onSubmit={handleSubmit}>
                 <Grid container spacing={3}>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} sm={12} md={12} sx={{ width: "100%" }}>
                     <TextField
                       fullWidth
                       label="Full Name"
@@ -238,9 +242,10 @@ const Contact = () => {
                       value={formData.fullName}
                       onChange={handleInputChange}
                       required
+                      sx={{ width: "100%" }}
                     />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} sm={12} md={12} sx={{ width: "100%" }}>
                     <TextField
                       fullWidth
                       label="Email"
@@ -250,9 +255,10 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
+                      sx={{ width: "100%" }}
                     />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} sm={12} md={12} sx={{ width: "100%" }}>
                     <TextField
                       fullWidth
                       label="Contact Number"
@@ -262,9 +268,10 @@ const Contact = () => {
                       value={formData.contactNumber}
                       onChange={handleInputChange}
                       required
+                      sx={{ width: "100%" }}
                     />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} sm={12} md={12} sx={{ width: "100%" }}>
                     <TextField
                       fullWidth
                       label="Subject"
@@ -273,9 +280,10 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleInputChange}
                       required
+                      sx={{ width: "100%" }}
                     />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} sm={12} md={12} sx={{ width: "100%" }}>
                     <TextField
                       fullWidth
                       label="Message"
@@ -286,19 +294,21 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       required
+                      sx={{ width: "100%" }}
                     />
                   </Grid>
-                  <Grid item xs={12}>
-                    <Button
+                  <Grid item xs={12} sm={12} md={12} sx={{ width: "100%" }}>
+                    <ActionButton
+                      text={loading ? "Sending..." : "Send Message"}
                       type="submit"
-                      variant="contained"
-                      size="large"
-                      startIcon={<Send />}
                       disabled={loading}
-                      sx={{ px: 4, py: 1.5, width: "100%" }}
-                    >
-                      {loading ? "Sending..." : "Send Message"}
-                    </Button>
+                      fullWidth={true}
+                      colorVariant="primary"
+                      direction="left"
+                      radius={8}
+                      icon={<Send />}
+                      iconLocation="start"
+                    />
                   </Grid>
                 </Grid>
               </Box>

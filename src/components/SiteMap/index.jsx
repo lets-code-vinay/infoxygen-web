@@ -110,20 +110,45 @@ const SiteMap = () => {
         }}
       />
       {/* Content overlay */}
-      <Grid
-        container
-        spacing={4}
-        justifyContent="center"
-        sx={{ width: "80%", margin: "0 auto", position: "relative", zIndex: 2 }}
+      <Box
+        sx={{
+          width: { xs: "100%", sm: "80%", md: "80%" },
+          margin: "0 auto",
+          position: "relative",
+          zIndex: 2,
+          display: "flex",
+          flexWrap: "wrap",
+          gap: { xs: 2, sm: 4, md: 4 },
+          justifyContent: "center",
+          px: { xs: 1, sm: 0, md: 0 }, // 4px padding on mobile (1 * 8px = 8px, but we want 4px each side)
+        }}
       >
         {sections.map((section) => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={2}
+          <Box
             key={section.title}
-            sx={{ width: "auto", minWidth: 0 }}
+            sx={{
+              flex: {
+                xs: "1 1 calc(50% - 8px)",
+                sm: "1 1 calc(50% - 16px)",
+                md: "1 1 auto",
+              },
+              minWidth: {
+                xs: "calc(50% - 8px)",
+                sm: "calc(50% - 16px)",
+                md:
+                  section.title === "Contact Us" || section.title === "Services"
+                    ? "30%"
+                    : "20%",
+              },
+              maxWidth: {
+                xs: "calc(50% - 8px)",
+                sm: "calc(50% - 16px)",
+                md:
+                  section.title === "Contact Us" || section.title === "Services"
+                    ? "30%"
+                    : "20%",
+              },
+            }}
           >
             <Box sx={{ width: "100%" }}>
               <Typography
@@ -154,6 +179,12 @@ const SiteMap = () => {
                         "&:hover": {
                           backgroundColor: "transparent",
                           textDecoration: "underline",
+                          textDecorationColor: theme.palette.secondary.main,
+                          textUnderlineOffset: "4px",
+                          color: theme.palette.secondary.main,
+                          "& .MuiListItemText-primary": {
+                            color: theme.palette.secondary.main,
+                          },
                         },
                       }}
                     >
@@ -164,7 +195,7 @@ const SiteMap = () => {
                           color:
                             theme.palette.mode === "light"
                               ? theme.palette.primary.main
-                              : "#fff",
+                              : theme.palette.accent?.light,
                           cursor: "pointer",
                         }}
                       />
@@ -173,9 +204,9 @@ const SiteMap = () => {
                 ))}
               </List>
             </Box>
-          </Grid>
+          </Box>
         ))}
-      </Grid>
+      </Box>
     </Box>
   );
 };

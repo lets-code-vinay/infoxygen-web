@@ -10,6 +10,7 @@ import {
   Box,
 } from "@mui/material";
 import { Menu as MenuIcon, DarkMode, LightMode } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import DesktopMenu from "./DesktopMenu";
 import MobileMenu from "./MobileMenu";
 import Tooltip from "@mui/material/Tooltip";
@@ -168,12 +169,16 @@ const Header = () => {
             sx={{ justifyContent: "space-between", px: { xs: 1, md: 2 } }}
           >
             {/* Logo on the left */}
-            <StyledLogo
-              src={new URL("../../assets/logos/logo.png", import.meta.url).href}
-              alt="Infoxygen"
-              scrolled={isScrolled ? 1 : 0}
-              sx={{ mx: { xs: 0.5, md: 0 }, p: { xs: 0.5, md: 0 } }}
-            />
+            <Link to="/">
+              <StyledLogo
+                src={
+                  new URL("../../assets/logos/logo.png", import.meta.url).href
+                }
+                alt="Infoxygen"
+                scrolled={isScrolled ? 1 : 0}
+                sx={{ mx: { xs: 0.5, md: 0 }, p: { xs: 0.5, md: 0 } }}
+              />
+            </Link>
 
             {/* All navigation and button grouped on the right */}
             <Box sx={{ display: "flex", alignItems: "center" }}>
