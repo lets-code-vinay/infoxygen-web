@@ -172,6 +172,7 @@ const Header = () => {
               src={new URL("../../assets/logos/logo.png", import.meta.url).href}
               alt="Infoxygen"
               scrolled={isScrolled ? 1 : 0}
+              sx={{ mx: { xs: 0.5, md: 0 }, p: { xs: 0.5, md: 0 } }}
             />
 
             {/* All navigation and button grouped on the right */}

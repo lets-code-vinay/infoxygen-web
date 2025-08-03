@@ -5,11 +5,19 @@ import {
   Menu,
   MenuItem,
   ListItemIcon,
+  Typography,
   useTheme,
   styled,
 } from "@mui/material";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
+import { Link, useNavigate } from "react-router-dom";
 import { SERVICES_ITEMS, INDUSTRIES_ITEMS } from "./constants";
+import {
+  isServiceAvailable,
+  isIndustryAvailable,
+  getServicePath,
+  getIndustryPath,
+} from "../../config/pagesConfig";
 import ActionButton from "../CustomButtons/ActionButton/ActionButton";
 
 /**
@@ -41,6 +49,12 @@ const DesktopMenu = ({
   handleIndustriesClick,
   handleClose,
 }) => {
+  const navigate = useNavigate();
+
+  const handleLetsConnect = () => {
+    navigate("/contact");
+  };
+
   /**
    * Renders the main desktop navigation menu
    * @description Creates navigation buttons with hover animations and dropdown triggers
@@ -49,6 +63,8 @@ const DesktopMenu = ({
   const renderDesktopMenu = () => (
     <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
       <Button
+        component={Link}
+        to="/"
         variant="text"
         sx={{
           color:
@@ -60,6 +76,7 @@ const DesktopMenu = ({
           fontWeight: 500,
           position: "relative",
           transition: "color 0.3s ease",
+          textDecoration: "none",
           "&::after": {
             content: '""',
             position: "absolute",
@@ -73,6 +90,7 @@ const DesktopMenu = ({
           "&:hover": {
             backgroundColor: "transparent",
             color: theme.palette.secondary.main,
+            textDecoration: "none",
             "&::after": {
               width: "100%",
             },
@@ -155,6 +173,8 @@ const DesktopMenu = ({
       </Button>
 
       <Button
+        component={Link}
+        to="/blog"
         variant="text"
         sx={{
           color:
@@ -166,6 +186,7 @@ const DesktopMenu = ({
           fontWeight: 500,
           position: "relative",
           transition: "color 0.3s ease",
+          textDecoration: "none",
           "&::after": {
             content: '""',
             position: "absolute",
@@ -179,6 +200,7 @@ const DesktopMenu = ({
           "&:hover": {
             backgroundColor: "transparent",
             color: theme.palette.secondary.main,
+            textDecoration: "none",
             "&::after": {
               width: "100%",
             },
@@ -189,6 +211,8 @@ const DesktopMenu = ({
       </Button>
 
       <Button
+        component={Link}
+        to="/career"
         variant="text"
         sx={{
           color:
@@ -200,6 +224,7 @@ const DesktopMenu = ({
           fontWeight: 500,
           position: "relative",
           transition: "color 0.3s ease",
+          textDecoration: "none",
           "&::after": {
             content: '""',
             position: "absolute",
@@ -213,6 +238,7 @@ const DesktopMenu = ({
           "&:hover": {
             backgroundColor: "transparent",
             color: theme.palette.secondary.main,
+            textDecoration: "none",
             "&::after": {
               width: "100%",
             },
@@ -233,6 +259,7 @@ const DesktopMenu = ({
             ? "primary"
             : "accent"
         }
+        onClick={handleLetsConnect}
       />
     </Box>
   );
@@ -256,12 +283,52 @@ const DesktopMenu = ({
           },
         }}
       >
-        {SERVICES_ITEMS.map((item, index) => (
-          <StyledMenuItem key={index} onClick={handleClose}>
-            <ListItemIcon sx={{ minWidth: 36 }}>{item.icon}</ListItemIcon>
-            {item.name}
-          </StyledMenuItem>
-        ))}
+        {SERVICES_ITEMS.map((item, index) => {
+          const isAvailable = isServiceAvailable(item.name);
+          return (
+            <StyledMenuItem
+              key={index}
+              onClick={() => {
+                handleClose();
+                if (isAvailable) {
+                  window.location.href = getServicePath(item.name);
+                } else {
+                  window.location.href = `/coming-soon?title=${encodeURIComponent(
+                    item.name
+                  )}&category=service`;
+                }
+              }}
+              sx={{
+                opacity: isAvailable ? 1 : 0.6,
+                cursor: isAvailable ? "pointer" : "default",
+                "&:hover": {
+                  backgroundColor: isAvailable ? "#f8f9fa" : "transparent",
+                  color: isAvailable ? "secondary.main" : "text.secondary",
+                },
+              }}
+            >
+              <ListItemIcon sx={{ minWidth: 36 }}>{item.icon}</ListItemIcon>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  width: "100%",
+                }}
+              >
+                <span>{item.name}</span>
+                {!isAvailable && (
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "text.secondary", fontStyle: "italic" }}
+                  >
+                    Coming Soon
+                  </Typography>
+                )}
+              </Box>
+            </StyledMenuItem>
+          );
+        })}
       </Menu>
 
       <Menu
@@ -278,12 +345,52 @@ const DesktopMenu = ({
           },
         }}
       >
-        {INDUSTRIES_ITEMS.map((item, index) => (
-          <StyledMenuItem key={index} onClick={handleClose}>
-            <ListItemIcon sx={{ minWidth: 36 }}>{item.icon}</ListItemIcon>
-            {item.name}
-          </StyledMenuItem>
-        ))}
+        {INDUSTRIES_ITEMS.map((item, index) => {
+          const isAvailable = isIndustryAvailable(item.name);
+          return (
+            <StyledMenuItem
+              key={index}
+              onClick={() => {
+                handleClose();
+                if (isAvailable) {
+                  window.location.href = getIndustryPath(item.name);
+                } else {
+                  window.location.href = `/coming-soon?title=${encodeURIComponent(
+                    item.name
+                  )}&category=industry`;
+                }
+              }}
+              sx={{
+                opacity: isAvailable ? 1 : 0.6,
+                cursor: isAvailable ? "pointer" : "default",
+                "&:hover": {
+                  backgroundColor: isAvailable ? "#f8f9fa" : "transparent",
+                  color: isAvailable ? "secondary.main" : "text.secondary",
+                },
+              }}
+            >
+              <ListItemIcon sx={{ minWidth: 36 }}>{item.icon}</ListItemIcon>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  width: "100%",
+                }}
+              >
+                <span>{item.name}</span>
+                {!isAvailable && (
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "text.secondary", fontStyle: "italic" }}
+                  >
+                    Coming Soon
+                  </Typography>
+                )}
+              </Box>
+            </StyledMenuItem>
+          );
+        })}
       </Menu>
     </>
   );

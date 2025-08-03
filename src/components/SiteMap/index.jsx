@@ -5,24 +5,57 @@ import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
+import ListItemButton from "@mui/material/ListItemButton";
 import { useTheme } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 import sitemapImg from "../../assets/images/sitemap.png";
 import sitemapLightImg from "../../assets/images/sitemap-light-mode.png";
 
-// Dummy data arrays (replace with your real data later)
-const menuLinks = ["Home", "About", "Careers", "Contact"];
-const services = [
-  "Web Development",
-  "Mobile App Development",
-  "Cloud Solutions",
+// Sitemap data with routing information
+const menuLinks = [
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+  { name: "Careers", path: "/career" },
+  { name: "Contact", path: "/contact" },
 ];
-const support = ["Help Center", "FAQs", "Live Chat"];
-const industries = ["Healthcare", "Finance", "Retail"];
-const blog = ["Latest Posts", "Tech News", "Case Studies"];
+
+const services = [
+  { name: "Web Development", path: "/services/web-development" },
+  { name: "Mobile App Development", path: "/services/mobile-app-development" },
+  { name: "Cloud Solutions", path: "/services/cloud-solutions" },
+];
+
+const support = [
+  { name: "Help Center", path: "/help-center" },
+  { name: "FAQs", path: "/coming-soon?title=FAQs&category=support" },
+  {
+    name: "Live Chat",
+    path: "/coming-soon?title=Live%20Chat&category=support",
+  },
+];
+
+const industries = [
+  { name: "Healthcare", path: "/industries/healthcare" },
+  { name: "Finance", path: "/industries/banking-financial-services" },
+  { name: "Retail", path: "/coming-soon?title=Retail&category=industry" },
+];
+
+const blog = [
+  {
+    name: "Latest Posts",
+    path: "/coming-soon?title=Latest%20Posts&category=blog",
+  },
+  { name: "Tech News", path: "/coming-soon?title=Tech%20News&category=blog" },
+  {
+    name: "Case Studies",
+    path: "/coming-soon?title=Case%20Studies&category=blog",
+  },
+];
+
 const contact = [
-  "Email: info@infoxygen.com",
-  "Phone: +91-7307805030",
-  "Address: India",
+  { name: "Email: info@infoxygen.com", path: "mailto:info@infoxygen.com" },
+  { name: "Phone: +91-7307805030", path: "tel:+917307805030" },
+  { name: "Address: India", path: "#" },
 ];
 
 const sections = [
@@ -48,6 +81,7 @@ const SiteMap = () => {
         position: "relative",
         py: 6,
         overflow: "hidden",
+        px: { xs: 2, md: 0 },
       }}
     >
       {/* Background image, right aligned   */}
@@ -55,12 +89,21 @@ const SiteMap = () => {
         sx={{
           position: "absolute",
           top: 0,
-          right: 0,
+          right: { xs: "auto", md: 0 },
+          left: { xs: 0, md: "auto" },
           bottom: 0,
-          width: { xs: "60%", md: "50%" },
-          background: `url(${
-            theme.palette.mode === "light" ? sitemapLightImg : sitemapImg
-          }) right center / cover no-repeat`,
+          width: { xs: "120%", md: "50%" },
+          height: "100%",
+          background:
+            theme.palette.mode === "light"
+              ? {
+                  xs: `url(${sitemapLightImg}) right center / cover no-repeat`,
+                  md: `url(${sitemapLightImg}) right center / cover no-repeat`,
+                }
+              : {
+                  xs: `url(${sitemapImg}) right center / cover no-repeat`,
+                  md: `url(${sitemapImg}) right center / cover no-repeat`,
+                },
           opacity: 0.18,
           zIndex: 1,
           pointerEvents: "none",
@@ -103,16 +146,29 @@ const SiteMap = () => {
                     disableGutters
                     sx={{ py: 0.5, width: "100%" }}
                   >
-                    <ListItemText
-                      primary={item}
-                      primaryTypographyProps={{
-                        fontSize: 15,
-                        color:
-                          theme.palette.mode === "light"
-                            ? theme.palette.primary.main
-                            : "#fff",
+                    <ListItemButton
+                      component={Link}
+                      to={item.path}
+                      sx={{
+                        p: 0,
+                        "&:hover": {
+                          backgroundColor: "transparent",
+                          textDecoration: "underline",
+                        },
                       }}
-                    />
+                    >
+                      <ListItemText
+                        primary={item.name}
+                        primaryTypographyProps={{
+                          fontSize: 15,
+                          color:
+                            theme.palette.mode === "light"
+                              ? theme.palette.primary.main
+                              : "#fff",
+                          cursor: "pointer",
+                        }}
+                      />
+                    </ListItemButton>
                   </ListItem>
                 ))}
               </List>

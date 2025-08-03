@@ -11,6 +11,9 @@ const StatsContainer = styled(Box)(({ theme }) => ({
     width: "100%",
     justifyContent: "center",
   },
+  [theme.breakpoints.down("sm")]: {
+    padding: "10px",
+  },
 }));
 
 const StatItem = styled(Box)(({ theme }) => ({

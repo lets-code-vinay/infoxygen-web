@@ -1,14 +1,14 @@
 // Import logos using direct imports since SVG files now use raw transformer
-import ClaudeAI from '../assets/logos/AIPartners/Claude_AI_logo.svg';
-import Augment from '../assets/logos/AIPartners/augment.svg';
-import Nvidia from '../assets/logos/AIPartners/Nvidia.svg';
-import Meta from '../assets/logos/AIPartners/meta.svg';
-import Anthropic from '../assets/logos/AIPartners/anthropic_logo.svg';
-import DeepSeek from '../assets/logos/AIPartners/deepseek.svg';
-import Snowflake from '../assets/logos/AIPartners/snowflake.svg';
-import OpenAI from '../assets/logos/AIPartners/OpenAI.svg';
-import Gemini from '../assets/logos/AIPartners/gemini.svg';
-import CharacterAI from '../assets/logos/AIPartners/Character-ai.svg';
+import ClaudeAI from "../assets/logos/AIPartners/Claude_AI_logo.png";
+import Augment from "../assets/logos/AIPartners/augment.png";
+import Nvidia from "../assets/logos/AIPartners/Nvidia-1.png";
+import Meta from "../assets/logos/AIPartners/meta.svg";
+import Anthropic from "../assets/logos/AIPartners/anthropic_logo.png";
+import DeepSeek from "../assets/logos/AIPartners/deepseek.svg";
+import Snowflake from "../assets/logos/AIPartners/snowflake.svg";
+import OpenAI from "../assets/logos/AIPartners/OpenAI.png";
+import Gemini from "../assets/logos/AIPartners/gemini.svg";
+import CharacterAI from "../assets/logos/AIPartners/Character-ai.png";
 
 // Base array of logos
 const baseLogos = [

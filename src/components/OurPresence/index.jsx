@@ -1,5 +1,5 @@
 import * as React from "react";
-import SectionHeader from "../SectionHeader";
+import SectionHeader from "../SectionHeader/SectionHeader";
 import WorldMapWithIndia from "../WorldMapWithIndia";
 import {
   MainBody,

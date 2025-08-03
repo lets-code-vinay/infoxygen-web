@@ -34,6 +34,13 @@ const HeroBanner = () => {
     setCirclePositions(generateRandomPositions());
   }, []);
 
+  // Ensure the page stays at the top when component mounts
+  useEffect(() => {
+    if (window.scrollY > 0) {
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   useEffect(() => {
     // Add CSS animations dynamically
     const style = document.createElement("style");
