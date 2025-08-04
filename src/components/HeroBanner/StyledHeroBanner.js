@@ -54,7 +54,8 @@ export const FloatingCircle = styled("div")(
     opacity: 0.25,
     animation: `float 6s ease-in-out infinite`,
     animationDelay: `${delay}s`,
-    filter: theme.palette.mode === "light" ? "invert(1)" : "none",
+    filter:
+      theme.palette.mode === "light" ? "invert(1) blur(3px)" : "blur(3px)",
     boxShadow: `0 0 30px ${color}60, 0 0 60px ${color}40`,
   })
 );
@@ -64,13 +65,14 @@ export const GlowingOrb = styled("div")(({ theme }) => ({
   width: "300px",
   height: "300px",
   borderRadius: "50%",
-  background: `radial-gradient(circle, ${theme.palette.primary.main}15 0%, transparent 70%)`,
+  background: `radial-gradient(circle, ${theme.palette.primary.main}40 0%, ${theme.palette.primary.main}20 30%, transparent 70%)`,
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   animation: "pulse 4s ease-in-out infinite",
   zIndex: 1,
-  boxShadow: `0 0 60px ${theme.palette.primary.main}20`,
+  boxShadow: `0 0 80px ${theme.palette.primary.main}40, 0 0 120px ${theme.palette.primary.main}20`,
+  filter: "blur(15px) ",
 }));
 
 export const ContentContainer = styled(Box)(({ theme }) => ({
